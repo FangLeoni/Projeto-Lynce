@@ -1,0 +1,200 @@
+body {
+    background: var(--primary-color);
+    /* background: green; */
+    margin-left: 30vh;
+    margin-right: 30vh;
+}
+
+/* =================== TITULO E LOGO =================== */
+.titulo{
+    font-family: Polentical Neon;
+    font-size: 6vh;
+    color: var(--primary-font-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+    background: lightgray;
+    border-radius: 50%;
+}
+
+/* =========================================================  */
+
+/* =================== INFORMAÇÕES DO CELULAR =================== */
+
+.infoCell{
+    font-family: Poppins;
+    color: var(--primary-font-color);
+    font-size: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+
+/* =========================================================  */
+
+/* =================== PERGUNTAS =================== */
+
+.boxPergunta {
+    padding: 2vh;
+    font-family: Poppins;
+    color: var(--primary-font-color);
+    margin-bottom: 10vh;
+    margin-top: 10vh;
+    border-radius: 23px;
+    background: #246e70;
+    box-shadow:  5px 5px 15px #1c5556, 
+             -5px -5px 15px #1c5556;
+}
+
+/* Relacionado àos radios buttons */
+
+.txtopcao{
+    font-size: 3vh;
+}
+
+.btnRadio{
+    font-size: 2vh;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    vertical-align: middle;
+    color: var(--primary-font-color);
+    padding-left: 30px;
+    
+}
+
+.btnRadio + .btnRadio{
+    margin-left: 20px;
+}
+
+.btnRadio input[type="radio"]{
+    display: none;
+}
+
+.btnRadio span{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #072D36;
+    display: block;
+    position: relative;
+    left: 1vh;
+    top: 0px;
+}
+
+.btnRadio span:after{
+    content: "";
+    height: 20px;
+    width: 20px;
+    background:  #032128;
+    display: block;
+    left: 50px;
+    top: 50px;
+    transform: translate(0, 0) scale(0);
+    border-radius: 50%;
+    transition: 300ms ease-in-out 0s;
+}
+
+.btnRadio input[type="radio"]:checked ~ span:after{
+    transform: translate(0, 0) scale(1);
+}
+
+.circulo{
+    position: relative;
+    width:  3vh;
+    height: 3vh;
+    background: #032128;
+    line-height: 2vh;
+    text-align: center;
+    margin: 0 4px;
+    color: #6f6f6f;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.opcoes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.opcao{
+    font-size: 4vh;
+    padding: 4vh;
+}
+.tituloPergunta{
+    font-size: 4vh;
+    margin: 0;
+    margin-left: 2vh;
+    padding: 1vh;
+    color: white;
+}
+.pergunta{
+    margin-left: 2vh;
+    font-size: 3vh;
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 3vh;
+    color: white;
+}
+
+/* -------------------------------------------------------------- */
+
+/* Relacionado aos selects */
+.select{
+    border-radius: 10px;
+    border-color: aquamarine;
+    margin-top: 3vh;
+    margin-left: 30vh;
+    margin-right: 30vh;
+    margin-bottom: 5vh;
+    padding: 1vh;
+    width: 100vh;
+}
+/* ------------------------------- */
+
+/* =========================================================  */
+
+/* =================== Botão de finalizar =================== */
+.centralizarBotao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8vh;
+}
+
+a 
+{
+    text-decoration: none;
+}
+
+.botao{
+    font-family: Poppins;
+    font-size: 6vh;
+    color: var(--primary-font-color);
+    border-radius: 5px;
+    border: #041b20;
+    border-radius: 3px;
+    background: #072D36;
+    box-shadow:  5px 5px 19px #041b20, 
+                -5px -5px 19px #0a3f4c;
+    padding: 4vh 18vh;
+}
+
+/* =========================================================  */
+
+.voltar 
+{
+    position: absolute;
+    width: 8vw;
+    margin-left: -10rem;
+    margin-top: 1.5rem;
+    height: 10vh;
+}

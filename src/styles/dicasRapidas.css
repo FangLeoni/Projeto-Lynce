@@ -1,0 +1,98 @@
+body {
+    background: var(--primary-color);
+    /* background: green; */
+    margin-left: 30vh;
+    margin-right: 30vh;
+}
+
+
+/* =================== TITULO E LOGO =================== */
+.titulo{
+    font-family: Polentical Neon;
+    font-size: 6vh;
+    color: var(--primary-font-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+    background: lightgray;
+    border-radius: 50%;
+}
+
+/* =========================================================  */
+
+/* =================== INFORMAÇÕES DO CELULAR =================== */
+
+.infoCell{
+    font-family: Poppins;
+    color: white;
+    font-size: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+
+/* =========================================================  */
+
+
+/* =================== BARRA DE PESQUISA =================== */
+.barraPesquisa{
+    margin-top: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#pesquisarDuvida{
+    font-family: Poppins;
+    width: 80vh;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: aquamarine;
+}
+#lupa{
+    margin-left: 10px;
+    height: 35px;
+    width:  35px;
+    cursor: pointer;
+}
+/* =========================================================  */
+
+.boxPergunta {
+    font-family: Poppins;
+    margin-bottom: 10vh;
+    margin-top: 10vh;
+    border-radius: 23px;
+    background: #246e70;
+    box-shadow:  5px 5px 15px #1c5556, 
+             -5px -5px 15px #1c5556;
+}
+
+.tituloPergunta{
+    font-size: 3.5vh;
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 30px;
+    color: white;
+
+}
+
+.pergunta{
+    font-size: 3vh;
+    margin: 0;
+    padding: 30px;
+    color: white;
+}
+
+.voltar 
+{
+    position: absolute;
+    width: 8vw;
+    margin-left: -10rem;
+    margin-top: 1.5rem;
+    height: 10vh;
+}

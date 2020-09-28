@@ -1,0 +1,90 @@
+body{
+    background-color: var(--primary-color);
+    color:white;
+}
+
+h1 {
+    font-family: Polentical Neon,Arial, Helvetica, sans-serif;
+}
+
+
+/* ======LOGOS DOS MODELOS========= */
+.logos {
+    margin: 0 4rem;
+}
+
+.motorola-logo{
+    transition: 1s;
+    width: 10%;
+    /* filter: invert(1.1); */
+}
+.lg-logo{
+    transition: 1s;
+    width: 16%;
+    /* filter: invert(1.1); */
+}
+.apple-logo{
+    transition: 1s;
+    width: 10%;
+    /* filter: invert(1.1); */
+}
+.samsung-logo{
+    transition: 1s;
+    width: 24%;
+    /* filter: invert(1.1); */
+}
+
+/* =================DIV QUE GUARDA AS LOGOS============== */
+.div-logo{
+    transition: 1s;
+    background-color: var(--secondary-color);
+    text-align: center;
+    top: 30%;   
+    border-radius: 30px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    height: 200px;
+}
+/* ==============BOTÃO ESCOLHA SUA MARCA======== */
+.btn-escolha-marca{
+    transition: 1s;
+    position: absolute;
+
+    background: linear-gradient(97.24deg, #07303A -21.95%, rgba(7, 48, 58, 0.984375) -21.93%, #062931 131.43%);
+    box-shadow: 20px 20px 20px #06262E, -10px -10px 10px #07303A;
+    border-radius: 10px;
+    width: 30vw;
+    height: 10vh;
+    margin-left: 35%;
+    text-align: center;
+    top: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+a
+{
+    color: var(--secondary-color);
+}
+
+.btn-escolha-marca h2 
+{
+    pointer-events: none;
+    cursor: pointer;
+}
+
+/* ======================titulo do bgl========== */
+.title{
+    transition: 1s;
+    text-align: center;
+    font-size: 80px;
+}
+
+img:hover{
+    transition: 1s;
+    transform: scale(1.2);
+}

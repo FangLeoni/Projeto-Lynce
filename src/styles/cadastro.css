@@ -1,0 +1,220 @@
+/* Grid areas */
+
+#nome
+{
+   grid-area: nome;
+}
+#usuario
+{
+    grid-area: usuario;
+}
+#senha
+{
+    grid-area: senha;
+}
+#confSenha
+{
+    grid-area: confSenha;
+}
+#estado
+{
+    grid-area: estado;
+}
+#cidade
+{
+    grid-area: cidade;
+}
+#tel
+{
+    grid-area: tel;
+}
+
+/* Grid areas */
+
+body 
+{
+    background-color: var(--primary-color);
+}
+
+header 
+{
+    display: flex;
+    background-color: var(--primary-color-dark);
+    align-items: center;
+    height: 5.5rem;
+}
+
+h1 
+{
+    margin: 0 auto;
+    font-family: Polentical Neon;
+    color: var(--primary-font-color);
+}
+
+.logo 
+{
+    margin-left: 0rem;
+    margin-right: 3rem;
+    margin-top: 5%;
+    height: 160%;
+}
+
+.container 
+{
+    width: 100%;
+    height: 70%;
+    height: calc(100vh - 5.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > h1
+{
+    margin-top: 5rem;
+}
+
+form 
+{
+    width: 85%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid 
+{
+    width: 100%;
+    height: 70%;
+    display: grid;
+    grid-template-areas: 
+                        "name usuario"
+                        "senha confSenha"
+                        "estado cidade"
+                        "tel tel"
+                        ;
+}
+
+.contEnv 
+{
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+form .col 
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+form .col .inputBox 
+{
+    position: relative;
+    width: 30vw;
+    height: 4.3rem;
+    background-color: var(--bg-dark);
+    color: var(--primary-font-color);
+    border-radius: 5px;
+}
+
+form .col .inputBox input 
+{
+    height: 4.3rem;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    border: 0;
+    color: var(--primary-font-color);
+    text-align: center;
+    text-justify: center;
+    border-radius: 5px;
+}
+
+form .col .inputBox input:-webkit-autofill
+{
+    transition: all 5000s ease-in-out 0s;
+    
+}
+
+form .col .inputBox .line 
+{
+    position: absolute;
+    bottom: 4px;
+    display: block;
+    margin: 0 2%;
+    width: 96%;
+    height: 2px;
+    background-color: var(--underline-color);
+}
+
+form .col .inputBox .text 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 6rem;
+    font-size: 0.9rem;
+    padding: 0 1rem;
+    display: block;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+form .col .inputBox input:focus + .text,
+form .col .inputBox input:active + .text 
+{
+    top: -30px;
+    left: -4px;
+}
+
+input[type="submit"]
+{
+    width: 15vw;
+    height: 3.8rem;
+    background-color: var(--bg-dark);
+    color: var(--button-secondary-color);
+    border: 0;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    transition: 0.5s;
+}
+
+input[type="submit"]:hover
+{
+    background-color: var(--bg-dark-secondary);
+}
+
+form .col .inputBox select
+{
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    padding-left: 10px;
+    background-color: transparent;
+    color: var(--primary-font-color);
+    border-radius: 5px;
+}
+
+form .col .inputBox select option
+{
+    background-color: var(--bg-dark-secondary);
+
+}
+
+h5 {
+    color: var(--primary-font-color);
+    text-align: center;
+}
+
+.link 
+{
+    color: var(--link-font-color);
+    text-decoration: none;
+}

@@ -1,0 +1,114 @@
+*
+{
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: Polentical Neon,Arial, Helvetica, sans-serif;
+}
+
+body
+{
+    background: rgb(1, 57, 67);
+}
+
+#back
+{
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+#back a
+{
+    text-decoration: none;
+    color: chartreuse;
+    font-size: 25px;
+}
+
+#container
+{
+    width: 80vw;
+    margin: auto;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(2, 73, 85);
+    border-radius: 42px;
+    background: linear-gradient(145deg, #02424d, #024e5b);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .5);
+}
+
+.content
+{
+    max-width: 600px;
+    text-align: center;
+    color: #fff;
+}
+
+#projeto
+{
+    margin-top: 1rem;
+    font-size: 3vw;
+    line-height: 1em;
+}
+
+.content p 
+{
+    margin-top: 5%;
+    font-size: 25px;
+}
+
+.modelo
+{
+    margin-top: 2%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    width: 40vw;
+    font-size: 1.5rem;
+
+    display: block;
+    padding: 10px 10px 10px 10px;
+}
+
+.content form
+{
+    margin-bottom: 5%;
+}
+
+#outroProblema
+{
+    width: 40vw;
+    font-size: 1.5rem;
+    margin-top: 5%;
+    padding-left: 10px;
+}
+
+.btn-escolha-marca{
+    width: 20vw;
+    height: 10vh;
+    background: linear-gradient(97.24deg, #07303A -21.95%, rgba(7, 48, 58, 0.984375) -21.93%, #062931 131.43%);
+    margin: 1.5rem auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+a
+{
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.btn-escolha-marca h2 
+{
+    pointer-events: none;
+    cursor: pointer;
+}
+
