@@ -12,8 +12,17 @@
   </head>
 
   <body>
+  <?php
+        session_start();
+
+        if($_SESSION['logado'] != true ) {
+            header("Location: index.html");
+        }
+        else {
+        }
+    ?>
     <div class="left-top">
-      <a href="./marca.html">
+      <a href="./marca.php">
         <div class="primario-div">
           <img
             class="celular-img"
@@ -41,13 +50,25 @@
 
     <h1 class="lynce-text">LYNCE</h1>
 
-    <a href="./dicasRapidas.html">
+    <a href="./dicasRapidas.php">
       <div class="secundario-div">
         <img class="lamp-img" src="../../assets/icons/dica-icone.svg" alt="lamp" />
         <h2 class="secundario-text">Dicas Rápidas</h2>
       </div>
     </a>
       
+    <!-- ---------------- VLibras------------- -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    <!-- ---------------- VLibras------------- -->
 
   </body>
 </html>

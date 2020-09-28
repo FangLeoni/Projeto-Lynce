@@ -12,6 +12,16 @@
 </head>
 <body>
 
+    <?php
+        session_start();
+
+        if($_SESSION['logado'] != true ) {
+            header("Location: index.html");
+        }
+        else {
+        }
+    ?>
+
     <div class="voltar">
         <a href="./home.php" >
             <h3> 
@@ -24,9 +34,9 @@
     </div>
 
     <div class="titulo">
-        <div class="logo">
-
-        </div>
+        <!-- <div class="logo"> -->
+            <img src="../../assets/images/logo_semFundo.png" alt="logo" class="logo">
+        <!-- </div> -->
         <h1 class="titulo">PROJETO LYNCE</h1>
     </div>
 
@@ -77,6 +87,20 @@
         <p class="pergunta">MINHA DUVIDA É UMA DÚVIDA NADA COMUM E
             EU QUERIA SABER A RESPOSTA PRA ELA</p>
     </div>
+
+    <!-- ---------------- VLibras------------- -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    <!-- ---------------- VLibras------------- -->
+
     <script type="javascript/text" src="../js/dicasRapidas.js"></script>
 </body>
 </html>

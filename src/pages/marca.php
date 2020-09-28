@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="../styles/marca.css">
 </head>
 <body>
+
+    <?php
+        session_start();
+
+        if($_SESSION['logado'] != true ) {
+            header("Location: index.html");
+        }
+        else {
+        }
+    ?> 
     
     <div class="voltar">
         <a href="./home.php" >
@@ -31,11 +41,24 @@
 <br><br>    
 </div>
 
-    <a href="./escolhaoproblema.html">
+    <a href="./escolhaoproblema.php">
         <div class="btn-escolha-marca">
             <h2>ESCOLHA A MARCA</h2>
         </div>
     </a>
+
+    <!-- ---------------- VLibras------------- -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    <!-- ---------------- VLibras------------- -->
     
 </body>
 </html>
