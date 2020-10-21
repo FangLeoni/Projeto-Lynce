@@ -18,13 +18,13 @@
             echo "Aconexão MYSQLi apresentou erro: " . mysqli_connect_error();
         }
 
-        if(isset($_POST['usuario'])) {
-            $login_usuario = mysqli_escape_string($conexao, $_POST['usuario']);
+        if(isset($_POST['email'])) {
+            $login_usuario = mysqli_escape_string($conexao, $_POST['email']);
             $senha_usuario = mysqli_escape_string($conexao, $_POST['senha']);
 
             $senha_usuario =  sha1($senha_usuario);
 
-            $seleciona_usuario = "select * from tb_usuarios where nm_apelido = '$login_usuario' and
+            $seleciona_usuario = "select * from tb_usuarios where ds_email = '$login_usuario' and
             ds_senha= '$senha_usuario'";
 
             $procura = mysqli_query($conexao,$seleciona_usuario);

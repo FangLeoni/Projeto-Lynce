@@ -26,10 +26,17 @@
                         <span class="line" ></span>
                     </div>
                 </div>
-                <div class="col">
+                <!-- <div class="col">
                     <div class="inputBox">
                         <input type="text" name="usuario" id="usuario" required="required" maxlength="50">
-                        <span class="text" >Usuario</span>
+                        <span class="text" >Usuário</span>
+                        <span class="line" ></span>
+                    </div>
+                </div> -->
+                <div class="col">
+                    <div class="inputBox">
+                        <input type="email" name="email" id="email" required="required" maxlength="50">
+                        <span class="text" >Email</span>
                         <span class="line" ></span>
                     </div>
                 </div>
@@ -50,7 +57,7 @@
                 <div class="col">
                     <div class="inputBox">
                         <select id="estado" name="estado">
-                            <option hidden>Estado</option>
+                                <option hidden value="null">Estado</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
                             <option value="AP">Amapá</option>
@@ -95,6 +102,31 @@
                         <span class="line" ></span>
                     </div>
                 </div>
+                <div class="col">
+                    <div class="inputBox btnRadio" >
+                        <h5>Tipo de conta</h5>
+                        <label for="">Técnico</label>
+                        <input type="radio" name="tipo_conta" value="tecnico" class="radio tec">
+                        <label for="">Usuário</label>
+                        <input type="radio" name="tipo_conta" value="usuario" checked class="radio usu">
+                    </div>
+                </div>
+
+                <div class="col tec_col" >
+                    <div class="inputBox">
+                        <input type="text" name="endereco" id="ende" maxlength="60" >
+                        <span class="text" >Endereço</span>
+                        <span class="line" ></span>
+                    </div>
+                </div>
+
+                <div class="col tec_col" >
+                    <div class="inputBox">
+                        <input type="text" name="num_complementar" id="num_comp" maxlength="14">
+                        <span class="text" >Número complementar</span>
+                        <span class="line" ></span>
+                    </div>
+                </div>
             </div>
             <div class="contEnv">
                 <input type="submit" value="CADASTRAR" >
@@ -115,5 +147,24 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
       </script>
     <!-- ---------------- VLibras------------- -->
+
+      <script>
+          const tipos = document.querySelectorAll('input[name="tipo_conta"]')
+          const tec_col = document.querySelectorAll(".tec_col")
+            setInterval(() => {
+                for (const tipo of tipos) {
+                if (tipo.checked && (tipo.value == "tecnico")) {
+                    for(const col of tec_col ) {
+                        col.className = "col"
+                    }
+                    
+                } else if (tipo.checked && tipo.value == "usuario") {
+                    for(const col of tec_col ) {
+                        col.className = "tec_col"
+                    }
+                }
+            }
+            }, 500);
+      </script>
 </body>
 </html>

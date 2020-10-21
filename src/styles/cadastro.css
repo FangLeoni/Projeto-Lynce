@@ -8,6 +8,10 @@
 {
     grid-area: usuario;
 }
+#email
+{
+    grid-area: email;
+}
 #senha
 {
     grid-area: senha;
@@ -27,6 +31,18 @@
 #tel
 {
     grid-area: tel;
+}
+
+.radio {
+    grid-area: radio;
+}
+
+#end {
+    grid-area: ende;
+}
+
+#num_comp {
+    grid-area: num_comp;
 }
 
 /* Grid areas */
@@ -84,18 +100,23 @@ form
     align-items: center;
 }
 
+
+
 .grid 
 {
     width: 100%;
-    height: 70%;
+    height: 80%;
     display: grid;
     grid-template-areas: 
-                        "name usuario"
+                        "name email"
                         "senha confSenha"
                         "estado cidade"
-                        "tel tel"
+                        "tel radio"
+                        "ende num_comp"
                         ;
 }
+
+
 
 .contEnv 
 {
@@ -105,8 +126,19 @@ form
     justify-content: space-around;
 }
 
-form .col 
+/* form .col 
 {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+} */
+
+.tec_col {
+    display: none;
+}
+
+.tec_col_active {
     display: flex;
     justify-content: center;
     position: relative;
@@ -121,9 +153,14 @@ form .col .inputBox
     background-color: var(--bg-dark);
     color: var(--primary-font-color);
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-form .col .inputBox input 
+form .col .inputBox input[type="text"],
+form .col .inputBox input[type="password"],
+form .col .inputBox input[type="email"]
 {
     height: 4.3rem;
     width: 100%;
@@ -191,22 +228,28 @@ input[type="submit"]:hover
     background-color: var(--bg-dark-secondary);
 }
 
+
 form .col .inputBox select
 {
     width: 100%;
     height: 100%;
-    font-size: 1.2rem;
     padding-left: 10px;
     background-color: transparent;
     color: var(--primary-font-color);
     border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+form .col .inputBox select optgroup
+{
+    background-color: var(--bg-dark-secondary);
 }
 
 form .col .inputBox select option
 {
     background-color: var(--bg-dark-secondary);
-
 }
+
 
 h5 {
     color: var(--primary-font-color);
