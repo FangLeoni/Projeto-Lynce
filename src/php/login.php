@@ -7,39 +7,75 @@
 </head>
 <body>
     <?php
+        include 'conexao.php';
+
         session_start();
         $_SESSION['logado']=false;
 
-                                  //local      login  senha   banco
-        $conexao = mysqli_connect("localhost","root","","projetoLynce");
 
-        if(mysqli_connect_errno())
-        {
-            echo "Aconexão MYSQLi apresentou erro: " . mysqli_connect_error();
-        }
-
-        if(isset($_POST['email'])) {
+        if(isset($_POST['email']) && isset($_POST['senha'])) {
             $login_usuario = mysqli_escape_string($conexao, $_POST['email']);
             $senha_usuario = mysqli_escape_string($conexao, $_POST['senha']);
 
-            $senha_usuario =  sha1($senha_usuario);
+            function checaUsuario($login,$conexao) {
+                $seleciona_usuario = "select * from tb_usuarios where ds_email = '$login'";
 
-            $seleciona_usuario = "select * from tb_usuarios where ds_email = '$login_usuario' and
-            ds_senha= '$senha_usuario'";
+                $procura = mysqli_query($conexao,$seleciona_usuario);
 
-            $procura = mysqli_query($conexao,$seleciona_usuario);
+                $checa_usuario = mysqli_num_rows($procura);
 
-            $checa_usuario = mysqli_num_rows($procura);
+                return $checa_usuario > 0 ;
+            }
+
+            function checaTecnico($login,$conexao) {
+                $seleciona_usuario = "select * from tb_tecnicos where ds_email = '$login'";
+
+                $procura = mysqli_query($conexao,$seleciona_usuario);
+
+                $checa_tecnico = mysqli_num_rows($procura);
+
+                return $checa_tecnico > 0 ;
+            }
+
+            function verificaSenha($login,$senha_usuario,$conexao,$tipo) {
+                $sql = "select ds_senha from $tipo where ds_email='$login'";
+			
+                $query = $conexao->query($sql);
+                
+                $res = $query->fetch_object();
+
+                $password_hash = $res->ds_senha;
+                echo  "<br/>";
+                echo $password_hash . "<br/>";
+                echo password_hash($senha_usuario, PASSWORD_ARGON2I) . "<br/>";
+
+                $verify = password_verify($senha_usuario,$password_hash);
+                echo $verify;
+                return $verify;
+            }
 
 
-            if($checa_usuario > 0 ) {
+            if( checaUsuario($login_usuario,$conexao)) {
+                $tipo = "tb_usuarios";
+                                 
+            }
+            elseif (checaTecnico($login_usuario,$conexao)) {
+                $tipo = "tb_tecnicos";
+            }
+            else {
+                echo "<script>confirm('Login com erro, tente novamente!', window.location.href='../pages/index.html')</script>";
+            }
+
+            if (verificaSenha($login_usuario,$senha_usuario,$conexao, $tipo)) {
                 $_SESSION['logado'] = true;
                 $_SESSION['usu'] = $login_usuario;
+                $_SESSION['tipo'] = substr($tipo, 3,-1);
                 header("Location:../pages/home.php");
             }
 
             else {
-                echo "<script>confirm('Login ou senha com erro, tente novamente!', window.location.href='../pages/index.html')</script>";
+                echo "<script>confirm('Senha com erro, tente novamente!', window.location.href='../pages/index.html')</script>";
+            
             }
         }
     ?>

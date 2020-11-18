@@ -176,7 +176,6 @@ form .col .inputBox input[type="email"]
 form .col .inputBox input:-webkit-autofill
 {
     transition: all 5000s ease-in-out 0s;
-    
 }
 
 form .col .inputBox .line 

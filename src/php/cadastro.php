@@ -1,10 +1,5 @@
 <?php
-    $conexao = mysqli_connect("localhost","root","","projetoLynce");
-
-    if(mysqli_connect_errno())
-    {
-        echo "A conexão MYSQLi apresentou erro: " . mysqli_connect_error();
-    }
+    include 'conexao.php';
 
     $cond1 = isset($_POST['nome']) /*&& isset($_POST['usuario']) */ && isset($_POST['senha'])&& isset($_POST['confSenha']);
     $cond2 = isset($_POST['estado']) && isset($_POST['cidade']) && isset($_POST['tel']) && isset($_POST['tipo_conta']);
@@ -51,7 +46,9 @@
             
             $cd_id = usuChecker($email_usuario);
 
-            $senha_usuario = sha1($senha_usuario);
+
+            $senha_usuario = password_hash($senha_usuario, PASSWORD_ARGON2I);
+            // $senha_usuario = sha1($senha_usuario);
 
         if($_POST['tipo_conta'] == "usuario") {
             
