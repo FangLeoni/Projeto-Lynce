@@ -1,0 +1,238 @@
+body 
+{
+    display: flex;
+}
+img 
+{
+    width: 100%;
+    height: 100%;
+}
+
+/* <Barra Lateral> */
+
+.barraLateral 
+{
+    width: 28vw;
+    height: 100vh;
+    background: linear-gradient(100.2deg, #FFFFFF -60.63%, rgba(255, 255, 255, 0.984375) -60.61%, #DADADA 125.52%, rgba(242, 242, 242, 0) 125.52%);
+
+}
+
+/* <Header> */
+
+.barraLateral header 
+{
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.barraLateral header .voltar 
+{
+    width: 12%;
+
+    height: 17%;
+    margin-left: 10%;
+}
+
+.barraLateral header .perfil 
+{
+    width: 8vh;
+    height: 8vh;
+    margin-right: 10%;
+    background-color: rgb(66, 66, 66);
+    border-radius: 45px;
+}
+
+.barraLateral header .perfil img 
+{
+    border-radius: 45px;
+}
+
+/* </Header> */
+
+/* <Form> */
+
+.barraLateral form {
+    width: 100%;
+    height: 6vh;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.barraLateral form input
+{
+    width: 90%;
+    height: 90%;
+    border-radius: 45px;
+    border: 3px solid #4D9FFF;
+    padding-left: 1.2rem;
+}
+
+/* </Form> */
+
+/* <User Conversations> */
+
+.barraLateral .conversationContainer
+{
+    width: 100%;
+    height: calc(100vh - 21vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    overflow-y: scroll;
+}
+
+.barraLateral .conversationContainer .userConversation
+{
+    width: 80%;
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0.6rem 0;
+    border: 3px solid #4D9FFF;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.barraLateral .conversationContainer .userConversation img
+{
+    width: 9vh;
+    height: 9vh;
+    border-radius: 45px;
+    cursor: pointer;
+    /* background-color: red; */
+}
+
+.barraLateral .conversationContainer .userConversation div
+{
+    text-align: center;
+}
+
+/* .barraLateral .conversationContainer .inbox 
+{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    overflow-y: scroll;
+} */
+
+/* </User Conversations> */
+
+/* </Barra Lateral> */
+
+/* <Chat Container> */
+
+.chatContainer
+{
+    width: 100%;
+    height: 100vh;
+    background-color: #F5F2F2;
+    /* background-color: red; */
+}
+
+/* <Chat> */
+
+.chatContainer .chat
+{
+    width: 100%;
+    height: 85vh;
+    overflow-y: scroll;    
+}
+
+/* <Other Messages> */
+.chatContainer .otherUserContainer
+{
+    width: 100%;
+    height: auto;
+    /* padding: 1.2rem 1.2rem; */
+    /* background-color: brown; */
+}
+.chatContainer .otherUserContainer .otherUserMessage
+{
+    width: 40%;
+    height: 100%;
+    padding: 0.5rem 0.5rem;
+    background-color: #005463;
+    border-radius: 10px;
+    color: aliceblue;
+    margin-top: 1.2rem;
+    margin-left: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+/* </Other Messages> */
+
+/* <Main Messages> */
+.chatContainer .mainUserContainer
+{
+    width: 100%;
+    height: auto;
+    /* padding: 1.2rem 1.2rem; */
+}
+.chatContainer .mainUserContainer .mainUserMessage
+{
+    width: 40%;
+    height: 100%;
+    padding: 0.5rem 0.5rem;
+    background-color: #0ec8e9;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-top: 1.2rem;
+    margin-right: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+/* </Main Messages> */
+
+/* <Chat> */
+
+/* <Input Chat> */
+.chatContainer .envio
+{
+    width: 100%;
+    height: calc(100vh - 85vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatContainer .envio form 
+{
+    width: 90%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 3px #4D9FFF solid;
+    border-radius: 45px;
+}
+
+.chatContainer .envio form button
+{
+    background-color: transparent;
+    border: none;
+    height: 7vh;
+    width: 7vh;
+}
+
+.chatContainer .envio form input 
+{
+    width: 80%;
+    height: 70%;
+    padding-left: 1.5rem;
+    border-radius: 45px;
+    border: 3px #4D9FFF solid;
+}
+
+/* </Input Chat> */
+
+/* </Chat Container> */

@@ -1,0 +1,112 @@
+body {
+    background-color: #072D36;
+    color: white;
+}
+
+header {
+    display: flex;
+    background-color: var(--primary-color-dark);
+    align-items: center;
+    height: 5.5rem;
+}
+
+h1 {
+    margin: 2 auto;
+    /* margin-left: 11%; */
+    font-family: Polentical Neon;
+    color: var(--primary-font-color);
+}
+
+h2 {
+    padding: 20%;
+    /* margin-left: %; */
+}
+
+a {
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    text-decoration-style: none;
+    color: white;
+    padding-right: 50%;
+}
+
+.nav-bar {
+    display: flex;
+    position: relative;
+    text-align: center;
+    left: 25%;
+    /* padding-left: 130px; */
+}
+
+.logo {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 0.5%;
+    height: 100%;
+}
+
+.minimalist {
+    position: relative;
+    width: 40%;
+    padding: 30%;
+    padding-bottom: 4%;
+    padding-top: 6%;
+    transition: 0.5s;
+    filter: drop-shadow(5px 10px 10px #031a1f);
+}
+
+.texto-1 {
+    /* background-color: rgb(233, 233, 233); */
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    top: 90%;
+    /* left: %; */
+    font-size: 140%;
+    padding-bottom: 10%;
+}
+
+.textos {
+    /* display: flex;
+    position: relative;
+    background-color: violet;
+    right: -10px; */
+    display: flex;
+    align-items: center;
+    height: 5.5rem;
+}
+
+.equipe {
+    /* background-color: red; */
+    /* margin-left: -100px; */
+    position: relative;
+    display: flex;
+    /* left: 6%; */
+}
+
+.fotos {
+    /* background-color: pink; */
+    position: relative;
+    display: flex;
+    left: 100px;
+}
+
+.dev {
+    /* background-color: green; */
+    padding: 6%;
+    /* left: 10px; */
+    text-align: center;
+}
+
+h4 {
+    position: absolute;
+    display: flex;
+    font-size: 200%;
+    left: 45%;
+    padding-right: 0%;
+    padding-left: 0%;
+    padding-bottom: 10%;
+    text-align: center;
+    top: 110vh;
+}
