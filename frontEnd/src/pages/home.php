@@ -16,14 +16,14 @@
         session_start();
 
         if($_SESSION['logado'] != true ) {
-            header("Location: index.html");
+            header("Location: ./login.html");
         }
         else {
         }
     ?> 
 
     <div class="sair">
-      <a href="../php/logout.php">
+      <a href="/server/php/logout.php">
         <h2>sair <?php echo $_SESSION['tipo'] ?></h2>
       </a>
     </div>
