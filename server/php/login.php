@@ -17,26 +17,32 @@
             $res = $clienteClass->verifyClient();
 
             if($res == true) {
+                $res = $clienteClass->getClientData();
+                
                 $_SESSION['logado'] = true;
                 $_SESSION['email'] = $_POST['email'];
-                $_SESSION['tipo'] = "usuario";
-
+                $_SESSION['codigo'] = $res["cd_usuario"];
+                $_SESSION['tipo'] = "cliente";
+                
             } else {
                 return $res;
             }
-
+            
         } else {
             $tecnicoClass = new Technicians();
             $tecnicoClass->setTechEmail($_POST['email']);
             $tecnicoClass->setTechPassword($_POST['senha'], 0);
-
+            
             $res = $tecnicoClass->verifyTech();
-
+            
             if($res == true) {
+                $res = $tecnicoClass->getTechData();
+                
                 $_SESSION['logado'] = true;
                 $_SESSION['email'] = $_POST['email'];
+                $_SESSION['codigo'] = $res["cd_tecnico"];
                 $_SESSION['tipo'] = "tecnico";
-
+                
             } else {
                 return $res;
             }
@@ -93,16 +99,16 @@
         //     echo "<script>confirm('Login com erro, tente novamente!', window.location.href='../pages/login.html')</script>";
         // }
 
-        if (verificaSenha($login_usuario,$senha_usuario,$conexao, $tipo)) {
-            $_SESSION['logado'] = true;
-            $_SESSION['usu'] = $login_usuario;
-            $_SESSION['tipo'] = substr($tipo, 3,-1);
-            header("Location: ../pages/home.php");
-        }
+        // if (verificaSenha($login_usuario,$senha_usuario,$conexao, $tipo)) {
+        //     $_SESSION['logado'] = true;
+        //     $_SESSION['usu'] = $login_usuario;
+        //     $_SESSION['tipo'] = substr($tipo, 3,-1);
+        //     header("Location: ../pages/home.php");
+        // }
 
-        else {
-            echo "<script>confirm('Senha com erro, tente novamente!', window.location.href='../pages/login.html')</script>";
+        // else {
+        //     echo "<script>confirm('Senha com erro, tente novamente!', window.location.href='../pages/login.html')</script>";
         
-        }
+        // }
     }
 ?>

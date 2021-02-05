@@ -24,7 +24,8 @@
 
     <div class="sair">
       <a href="/server/php/logout.php">
-        <h2>sair <?php echo $_SESSION['tipo'] ?></h2>
+        <!-- <h2>sair <?php //echo $_SESSION['codigo'] ?></h2> -->
+        <h2>sair</h2>
       </a>
     </div>
 

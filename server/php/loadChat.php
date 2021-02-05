@@ -1,60 +1,57 @@
 <?php
     session_start();
-    include 'conexao.php';
+    // include 'conexao.php';
+    include_once '../classes/conversas.php';
 
     $idConversa = $_GET["id"];
-    $tipo = $_SESSION["tipo"];
-    $email = $_SESSION["usu"];
+    $otherUsu = $_GET["otherUsu"];
+    $mainUsu = $_SESSION["codigo"];
+    $tipo = $_SESSION['tipo'];
 
+    $mensagens = new Messages();
+    $mensagens->setUserType($tipo);
+    $mensagens->setMainUserCode($mainUsu);
+    $mensagens->setOtherUserCode($otherUsu);
 
-    if(isset($idConversa)) {
-
-        $_SESSION["conv"] = $idConversa;
-
-        if($tipo == "usuario") {
-            $outro = "tecnico";
-        } else {
-            $outro = "usuario";
-        }
-        
-        $sql = "SELECT cd_" . $tipo . " FROM tb_" . $tipo . "s WHERE ds_email LIKE '$email' ";
+    $mensagens->setConvCode($idConversa);
     
-        
-        $query = mysqli_query($conexao,$sql);
-        $codigo = $query->fetch_assoc();
-    
-        $codigo = $codigo['cd_'. $tipo];
+    $mensagens->createConv();
 
-        // echo $codigo;
-
-        $sql = "SELECT ds_message, cd_main FROM tb_chats WHERE fk_conversa LIKE $idConversa ORDER BY dt_creation ";
-        // echo $sql;
-
-        $query = mysqli_query($conexao,$sql);
-
-        $count = mysqli_num_rows($query);
-
-        if($count < 1) {
-            echo "<p class='noResults'>Sem conversas anteriores</p>";
-
-        } else {
-            while($message = $query->fetch_assoc()){
-                ?>
-                    <div class="<?php echo $message['cd_main'] == $codigo ? "main" : "other"; ?>UserContainer">
-                        <div class="<?php echo $message['cd_main'] == $codigo ? "main" : "other"; ?>UserMessage">
-                            <p>
-                                <?php echo $message["ds_message"]; ?>
-                            </p>
+    $infos = $mensagens->getMessages();
+        if($infos != false) {
+            
+            ?>
+            <div class="Chat">
+            <?php
+                foreach($infos as $info){
+                    ?>
+                        <div class="<?php echo $info['cd_main'] == $mainUsu ? "main" : "other"; ?>MessageCont">
+                            <div class="<?php echo $info['cd_main'] == $mainUsu ? "main" : "other"; ?>UserCont">
+                                <p><?php echo $info["ds_message"]; ?></p>
+                                <span><?php echo $info["dt_creation"]; ?> //</span>
+                            </div>
                         </div>
-                    </div>
-                <?php 
-            }
-        }
-
-        mysqli_close($conexao);
-
+                    <?php
+                }
+            ?>
+            </div>
+                <form class="messageForm">
+                    <input type="text" name="message" id="message" autocomplete="off">
+                    <button type="submit" class="sendButton"> > </button>
+                </form>
+            <?php
+        
     } else {
-        echo "Erro";
+        ?>
+            <div class="Chat">
+
+            </div>
+            <form class="messageForm">
+                <input type="text" name="message" id="message">
+                <button type="submit" class="sendButton"> > </button>
+            </form>
+
+        <?php
     }
 
-?>
+    ?>

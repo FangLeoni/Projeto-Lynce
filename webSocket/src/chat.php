@@ -34,7 +34,15 @@ class Chat implements MessageComponentInterface
                     $target = $this->subscriptions[$conn->resourceId];
                     foreach ($this->subscriptions as $id=>$channel) {
                         if ($channel == $target && $id != $conn->resourceId) {
-                            $this->users[$id]->send($data->message);
+                            $html = 
+                            '<div class="otherMessageCont">
+                                <div class="otherUserCont">
+                                    <p>'. $data->message .'</p>
+                                    <span> '. date("Y/m/d") . ' //</span>
+                                </div>
+                            </div>'
+                            ;
+                            $this->users[$id]->send($html);
                         }
                     }
                 }

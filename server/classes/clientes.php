@@ -126,5 +126,40 @@
 			}
 		}
 
+		public function getMultiClientData() {
+			$sql = $this->db->prepare("SELECT
+										tc.cd_usuario,
+										tc.nm_cidade,
+										tc.nm_usuario,
+										tc.md_picture,
+										IF(cv.cd_conversa IS NOT NULL, cv.cd_conversa, 0 ) AS cd_conversa
+									FROM tb_usuarios AS tc
+									LEFT JOIN tb_conversas AS cv ON cv.fk_usuario = tc.cd_usuario
+									WHERE ds_email LIKE ?");
+			$sql->execute(array("$this->email%"));
+			
+			$count = $sql->rowCount();
+			
+			$lista = array();
+
+			if($count > 0) {	
+
+				while($res = $sql->fetch(PDO::FETCH_ASSOC)){
+					array_push($lista, $res);
+				}
+
+				return $lista;
+				
+			} else {
+				
+				return false;
+			}
+		}
+
 	}
+
+	
+
+
+
 ?>

@@ -7,6 +7,7 @@ CADASTRO:
 - foto
 - cep
 - endereço [técnico]
+- número de clientes simultâneos [técnico]
 
 LOGIN:
 - email
@@ -19,9 +20,11 @@ CHAT:
 - id do otherUser
 - criação de código do canal
 - código do main e other User pra saber pra quem mandar a mensagem
+
 /*
     Quando o mainUser mandar uma mensagem (sendMessage)
     o otherUser vai receber por meio do websocket.
+    O registro no banco de dados vai ser independente
 */
 
 QUESTIONÁRIO:
@@ -79,10 +82,14 @@ Usuários:
 
 Chat: 
 
-1 arquivo para carregar conversas
-1 arquivo para deletar conversas
 1 arquivo para procurar pessoas
+1 arquivo para criar conversas
+1 arquivo para carregar conversas
 1 arquivo para carregar o Chat
+1 arquivo para deletar conversas
+
+- Testar criar arquivo JSON para armazenar temporariamente a conversa para evitar requisições 
+demais no banco
 
 Questinário:
 

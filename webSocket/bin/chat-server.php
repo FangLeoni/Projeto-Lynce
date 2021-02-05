@@ -14,5 +14,5 @@ use MyApp\Chat;
         ),
         8080
     );
-
+    echo "Server Rodando \n";
     $server->run();

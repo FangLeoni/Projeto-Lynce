@@ -1,70 +1,42 @@
 <?php 
     session_start();
-    include 'conexao.php';
-
-    if(isset($_GET["pesquisa"])) {
-        // echo "Chegou";
-        $tipo = $_SESSION['tipo'];
-        $email = mysqli_escape_string($conexao,$_GET["pesquisa"]);
-
-
-        if($tipo == "usuario") {
-            $outro = "tecnico";
-        } else {
-            $outro = "usuario";
-        }
-
-
-        $sql = "SELECT cd_" . $outro . ", nm_" . $outro . ", nm_cidade, md_picture FROM tb_" . $outro . "s WHERE ds_email LIKE '$email%' ";
-
-        
-        // echo $sql;
-
-
-        $procura =  mysqli_query($conexao,$sql);
-        $count = mysqli_num_rows($procura);
-
-        if($count < 1) {
-            echo "<p class='noResults'>Sem resultados</p>";
-
-        } else {
-            while($user = $procura->fetch_assoc()){
-               ?>
-                    <div class="userConversation" >
-                        <img src="../../profilePics/<?php echo $user['md_picture']; ?>" />
-            
-                        <div>
-                            <h4><?php echo $user['nm_'. $outro]; ?></h4>
-                            <h4><?php echo $user['nm_cidade']; ?></h4>
-                        </div>
-                    </div>
-                <?php 
-            }
-        }
-
-        // if($count < 1) {
-        //     echo "<p class='noResults'>Sem resultados</p>";
-        // } else {
-        //     while($user = $result->fetch_assoc()){
-        //         
-        //             <img src="../../assets/icons/user.svg" alt="user">
-        //             <div>
-        //                 <h4>$user[nm_tecnico]</h4>
-        //                 <h4>$user[nm_cidade]</h4>
-        //             </div>
-        //         
-        //     }
-        // }
-
-        // <div class="row"  >
-        //                 <img src="../../profilePics/<?php // echo $user['md_Picture']; " />
-        //                 <p><?php // echo $user['nm_tecnico']; </p>
-        //             </div> 
-        
-
-    } else {
-        echo "Failed to send data";
-    }
-
+    include_once '../classes/conversas.php';
     
+    $tipo = $_SESSION['tipo'];
+    $codigo = $_SESSION["codigo"];
+
+    if(isset($_GET["pesquisa"]) && trim($_GET["pesquisa"]) != "" ) {
+        $otherUsu = $_GET["pesquisa"];
+
+        $mensagens = new Messages();
+        $mensagens->setUserType($tipo);
+        $mensagens->setMainUserCode($codigo);
+        $mensagens->setOtherUserCode($otherUsu);
+
+        $infos = $mensagens->getConvByEmail();
+
+        if($infos != false) {
+            
+            foreach($infos as $info){
+                
+                $mensagens->setConvCode($info['cd_conversa']);
+                ?>
+                    
+                    <div class="userConversation" onclick="chat(<?php echo $mensagens->convId; ?>,<?php echo $tipo == 'cliente' ? $info['cd_tecnico'] : $info['cd_usuario']; ?>); subscribe(<?php echo $mensagens->convId; ?>)">
+                    <img src="/server/profilePics/<?php echo $info['md_picture']; ?>" alt="user">
+                    <div>
+                        <h4><?php echo $tipo == 'cliente' ? $info['nm_tecnico'] : $info['nm_usuario']; ?></h4>
+                        <h4><?php echo $info['nm_cidade']; ?></h4>
+                    </div>
+                </div>
+                <?php
+            }
+            // print_r($infos);
+            
+        } else {
+            echo "<p class='noResults'>Sem resultados</p>";
+        }
+        
+
+    }
 ?>

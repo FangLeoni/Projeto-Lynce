@@ -13,7 +13,6 @@ async function chat(id) {
         // console.log(html);
     })
     .catch((err) => console.log(`Não foi possivel carregar: ${err}`));
-
     
     if(!scrolled){
         chatHTML.scrollTop = chatHTML.scrollHeight;
