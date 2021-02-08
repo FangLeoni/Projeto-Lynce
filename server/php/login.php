@@ -17,12 +17,21 @@
             $res = $clienteClass->verifyClient();
 
             if($res == true) {
-                $res = $clienteClass->getClientData();
+                $res = $clienteClass->getClientDataByEmail();
                 
                 $_SESSION['logado'] = true;
                 $_SESSION['email'] = $_POST['email'];
                 $_SESSION['codigo'] = $res["cd_usuario"];
+                $_SESSION['profPic'] = $res["md_Picture"];
                 $_SESSION['tipo'] = "cliente";
+
+                $imagePath = "../profilePics/" . $mainCode . "/";
+                if (!is_dir($imagePath)) {
+                    mkdir($imagePath, 0777, true);
+                    $source = '../profilePics/' . $_SESSION['profPic'];
+                    $destination = $imagePath . $_SESSION['profPic'];
+                    copy( $source, $destination );
+                }
                 
             } else {
                 return $res;
@@ -36,12 +45,18 @@
             $res = $tecnicoClass->verifyTech();
             
             if($res == true) {
-                $res = $tecnicoClass->getTechData();
+                $res = $tecnicoClass->getTechDataByEmail();
                 
                 $_SESSION['logado'] = true;
                 $_SESSION['email'] = $_POST['email'];
                 $_SESSION['codigo'] = $res["cd_tecnico"];
+                $_SESSION['profPic'] = $res["md_Picture"];
                 $_SESSION['tipo'] = "tecnico";
+
+                $imagePath = "../profilePics/" . $mainCode . "/";
+                if (!is_dir($imagePath)) {
+                    mkdir($imagePath, 0777, true);
+                }
                 
             } else {
                 return $res;

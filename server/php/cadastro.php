@@ -25,7 +25,15 @@
             
             $res = $clienteClass->createClient();
 
-            if($res != true) {
+            if($res) {
+                $imagePath = "../profilePics/" . $clienteClass->id . "/";
+                
+                mkdir($imagePath, 0777, true);
+                $source = '../profilePics/user.jpg';
+                $destination = $imagePath . "user.jpg";
+                copy( $source, $destination );
+                
+            } else {
                 return $res;
             }
 
@@ -55,7 +63,14 @@
 
             $res = $tecnicoClass->createTech();
 
-            if($res != true) {
+            if($res) {
+                $imagePath = "../profilePics/" . $tecnicoClass->id . "/";
+                
+                mkdir($imagePath, 0777, true);
+                $source = '../profilePics/user.jpg';
+                $destination = $imagePath . "user.jpg";
+                copy( $source, $destination );
+            } else {
                 return $res;
             }
         }

@@ -21,11 +21,15 @@
 			$this->db = $connection->connect();
 		}
 
-		public function setTechId () { 
+		public function setTechId ($code=0) { 
 			// $bytes = random_bytes(30);
 			// $this->id = bin2hex($bytes);
-			$bytes = crc32(uniqid());
-			$this->id = $bytes;
+			if($code == 0) {
+				$bytes = rand(-10000,2147483646);
+				$this->id = $bytes;
+			} else {
+				$this->id = $code;
+			}
 		}
 
 		public function setTechName ( $name ) { $this->name = $name; }
@@ -49,9 +53,27 @@
 		public function setTechAddress ( $address ) { $this->address = $address ; }
 		public function setTechCompNumber ( $compNumber ) { $this->compNumber = $compNumber ; }
 
-		public function getTechData() {
-			$sql = $this->db->prepare("SELECT * FROM tb_tecnicos WHERE ds_email = :email ");
+		public function getTechDataByEmail() {
+			$sql = $this->db->prepare("SELECT * FROM tb_tecnicos WHERE ds_email = :email OR cd_tecnico = :codigo");
 			$sql->bindParam(":email", $this->email );
+			$sql->bindParam(":codigo", $this->id );
+			$sql->execute();
+
+			$res = $sql->fetch(PDO::FETCH_ASSOC);
+			// print_r($res);
+			$count = $sql->rowCount();
+
+			if($count > 0) {	
+				return $res;
+
+			} else {
+				return false;
+			}
+		}
+
+		public function getTechDataByCode() {
+			$sql = $this->db->prepare("SELECT * FROM tb_tecnicos WHERE cd_tecnico = :codigo");
+			$sql->bindParam(":codigo", $this->id );
 			$sql->execute();
 
 			$res = $sql->fetch(PDO::FETCH_ASSOC);
@@ -67,7 +89,7 @@
 		}
 		
 		public function verifyTech () {
-			$TechData = $this->getTechData();
+			$TechData = $this->getTechDataByEmail();
 	
 			if($TechData != false) {
 				$password_hash = $TechData["ds_senha"];
@@ -87,7 +109,7 @@
 		}
 
 		public function createTech() {
-			$TechData = $this->getTechData();
+			$TechData = $this->getTechDataByEmail();
 	
 			if($TechData == false) {
 				$sql = $this->db->prepare("INSERT INTO `tb_tecnicos` (
@@ -161,6 +183,22 @@
 				
 			} else {
 				return false;
+			}
+		}
+
+		public function updateTechProfilePhoto() {
+			$sql = $this->db->prepare("UPDATE tb_tecnicos SET `md_Picture` = :imagem WHERE ds_email = :email");
+			$data = [	
+				"email" => $this->email,
+				"imagem" => $this->photo
+			];
+			print_r($data);
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return "registrou no banco";
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao mudar imagem no banco"));
 			}
 		}
 

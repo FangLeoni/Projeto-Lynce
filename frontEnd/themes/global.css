@@ -31,16 +31,19 @@
     font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
-.voltar:link
+.voltar:link,
+.voltar
 {
     font-family: Fira Code;
     font-weight: bolder;
     font-size: 20px;
     color: #4D9FFF;
     text-decoration: none;
+    cursor:pointer;
 }
 
-.voltar:visited
+.voltar:visited,
+.voltar
 {
     color: #4D9FFF;
     text-decoration: none;

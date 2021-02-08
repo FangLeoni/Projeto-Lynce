@@ -7,19 +7,15 @@ header {
     display: flex;
     background-color: var(--primary-color-dark);
     align-items: center;
+    justify-content: space-around;
     height: 5.5rem;
 }
 
+
+
 h1 {
-    margin: 2 auto;
-    /* margin-left: 11%; */
     font-family: Polentical Neon;
     color: var(--primary-font-color);
-}
-
-h2 {
-    padding: 20%;
-    /* margin-left: %; */
 }
 
 a {
@@ -28,21 +24,16 @@ a {
     text-decoration: none;
     text-decoration-style: none;
     color: white;
-    padding-right: 50%;
 }
 
 .nav-bar {
     display: flex;
-    position: relative;
+    justify-content: space-around;
+    width: 40%;
     text-align: center;
-    left: 25%;
-    /* padding-left: 130px; */
 }
 
 .logo {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 0.5%;
     height: 100%;
 }
 

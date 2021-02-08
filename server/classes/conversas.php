@@ -20,13 +20,18 @@
                 if($convId == 0){
                     // $bytes = random_bytes(30);
                     // $this->convId = bin2hex($bytes);
-                    $bytes = crc32(uniqid());
-                    $this->convId = $bytes;
+                    $this->convId = rand(-10000,2147483646);
                 } else {
                     $this->convId = $convId;
                 }
         }
-        public function setChatCode ( ) { $this->chatId = rand(-10000,2147483646); }
+        public function setChatCode ($code = 0) {
+            if($code == 0) {
+                $this->chatId = rand(-10000,2147483646);
+            } else {
+                $this->chatId = $code;
+            }
+        }
         public function setMainUserCode ( $main ) { $this->main = $main; }
         public function setOtherUserCode ( $other ) { $this->other = $other; }
         public function setUserType ( $tipo ) { $this->tipo = $tipo; }
@@ -223,10 +228,46 @@
             }
         }
 
+        public function deleteConv(){
+
+            $sql = $this->db->prepare("DELETE FROM `tb_chats` WHERE fk_conversa = :convId");
+
+            $data = [	
+                "convId" => $this->convId,
+            ];
+
+            $status = $sql->execute($data);
+
+            if($status) {
+                $sql = $this->db->prepare("DELETE FROM `tb_conversas` WHERE cd_conversa = :convId");
+
+                $data = [	
+                    "convId" => $this->convId,
+                ];
+
+                $status = $sql->execute($data);
+                if($status) {
+                    echo "FOI";
+                    return header("HTTP/1.0 200 Conversa deletada com sucesso");	
+                } else {
+                    echo "Não FOI";
+                    return die(header("HTTP/1.0 422 Falha deletar conversa"));	
+                }
+            } else {
+                echo "FLOL";
+                return die(header("HTTP/1.0 422 Falha deletar conversa"));	
+            }
+                    
+            
+        }
+
     }
     
     // $mensagens = new Messages();
-    // $convIdConversa = 129831;
+    // $convIdConversa = 105057839;
+    // $mensagens->setConvCode($convIdConversa);
+
+    // $mensagens->deleteConv()
     // $convIdConversa = 2147483647;
     // $convIdConversa = 0;
 

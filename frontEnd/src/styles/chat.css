@@ -1,223 +1,3 @@
-/* body 
-{
-    display: flex;
-}
-img 
-{
-    width: 100%;
-    height: 100%;
-}
-
-
-.barraLateral 
-{
-    width: 28vw;
-    height: 100vh;
-    background: linear-gradient(100.2deg, #FFFFFF -60.63%, rgba(255, 255, 255, 0.984375) -60.61%, #DADADA 125.52%, rgba(242, 242, 242, 0) 125.52%);
-
-}
-
-
-.barraLateral header 
-{
-    width: 100%;
-    height: 15vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.barraLateral header .voltar 
-{
-    width: 12%;
-
-    height: 17%;
-    margin-left: 10%;
-}
-
-.barraLateral header .perfil 
-{
-    width: 8vh;
-    height: 8vh;
-    margin-right: 10%;
-    background-color: rgb(66, 66, 66);
-    border-radius: 45px;
-}
-
-.barraLateral header .perfil img 
-{
-    border-radius: 45px;
-}
-
-
-
-.barraLateral form {
-    width: 100%;
-    height: 6vh;
-    background-color: aqua;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.barraLateral form input
-{
-    width: 90%;
-    height: 90%;
-    border-radius: 45px;
-    border: 3px solid #4D9FFF;
-    padding-left: 1.2rem;
-}
-
-
-
-.barraLateral .conversationContainer
-{
-    width: 100%;
-    height: calc(100vh - 21vh);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    overflow-y: scroll;
-}
-
-.barraLateral .conversationContainer .userConversation
-{
-    width: 80%;
-    height: 10vh;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 0.6rem 0;
-    border: 3px solid #4D9FFF;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.barraLateral .conversationContainer .userConversation img
-{
-    width: 9vh;
-    height: 9vh;
-    border-radius: 45px;
-    cursor: pointer;
-    background-color: red;
-}
-
-.barraLateral .conversationContainer .userConversation div
-{
-    text-align: center;
-}
-
-.barraLateral .conversationContainer .inbox 
-{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    overflow-y: scroll;
-}
-
-
-
-
-.chatContainer
-{
-    width: 100%;
-    height: 100vh;
-    background-color: #F5F2F2;
-    background-color: red;
-}
-
-
-.chatContainer .chat
-{
-    width: 100%;
-    height: 85vh;
-    overflow-y: scroll;    
-}
-
-.chatContainer .otherUserContainer
-{
-    width: 100%;
-    height: auto;
-    padding: 1.2rem 1.2rem;
-    background-color: brown;
-}
-.chatContainer .otherUserContainer .otherUserMessage
-{
-    width: 40%;
-    height: 100%;
-    padding: 0.5rem 0.5rem;
-    background-color: #005463;
-    border-radius: 10px;
-    color: aliceblue;
-    margin-top: 1.2rem;
-    margin-left: 1.2rem;
-    margin-bottom: 1.2rem;
-}
-
-.chatContainer .mainUserContainer
-{
-    width: 100%;
-    height: auto;
-    padding: 1.2rem 1.2rem;
-}
-.chatContainer .mainUserContainer .mainUserMessage
-{
-    width: 40%;
-    height: 100%;
-    padding: 0.5rem 0.5rem;
-    background-color: #0ec8e9;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-top: 1.2rem;
-    margin-right: 1.2rem;
-    margin-bottom: 1.2rem;
-}
-
-
-.chatContainer .envio
-{
-    width: 100%;
-    height: calc(100vh - 85vh);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chatContainer .envio form 
-{
-    width: 90%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border: 3px #4D9FFF solid;
-    border-radius: 45px;
-}
-
-.chatContainer .envio form button
-{
-    background-color: transparent;
-    border: none;
-    height: 7vh;
-    width: 7vh;
-}
-
-.chatContainer .envio form input 
-{
-    width: 80%;
-    height: 70%;
-    padding-left: 1.5rem;
-    border-radius: 45px;
-    border: 3px #4D9FFF solid;
-}
- */
-
 body 
 {
     display: flex;
@@ -247,24 +27,37 @@ body
     margin-bottom: 20px;
 }
 
-.topCont > .perfCont
+.topCont > .photoCont
 {
     /* background-color: yellow; */
     height: 100%;
 }
 
-.topCont > .perfCont > img
+.topCont > .photoCont > img
 {
     height: 100%;
     border-radius: 45px;
     cursor: pointer;
 }
 
+.selected
+{
+    border: 2px cyan solid;
+}
+
+.loadingBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .searchBar
 {
     /* background-color: yellowgreen; */
     height: 10vh;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -338,6 +131,38 @@ body
 {
     text-align: center;
 }
+
+#menu {
+    display: block;
+    background-color: white;
+    padding: 10px 0px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 30px lightgrey;
+    position: absolute;
+    transform-origin: center;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  
+  #menu.show {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: top left;
+  }
+  
+  .menu-item {
+    display: block;
+    padding: 10px 30px;
+    transition: 0.1s;
+    color: #666;
+  }
+  
+  .menu-item:hover {
+    background-color: #eee;
+    cursor: pointer;
+  }
 
 .rightBar
 {
@@ -523,4 +348,117 @@ body
 {
     width: 8vh;
     height: 8vh;
+}
+
+
+.profileCont 
+{
+    /* background-color: aqua; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.imgProfCont
+{
+    height: 20vh;
+    border-radius: 50%;
+}
+
+.imgProfCont #uploadPic {
+    width: 20vh;
+    height: 100%;
+    /* background-color: blueviolet; */
+    display: flex;
+    align-items: flex-end;
+}
+
+.imgProfCont #uploadPic #profilePhoto 
+{
+    height: 90%;
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid #4D9FFF;
+}
+
+.imgProfCont #uploadPic input
+{
+    width: 20vh;
+    height: 20vh;
+    position: absolute;
+    z-index: 2;
+    background-color: teal;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+/* ----------------------------- */
+
+.profInfoCont 
+{
+    width: 80%;
+    height: 100%;
+    /* background-color: teal; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.inputCont
+{
+    /* background-color: yellow; */
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputCont > label
+{
+    /* background-color: blueviolet; */
+    /* width: 100%; */
+}
+
+.inputCont > input
+{
+    width: 90%;
+    height: 60%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 3px solid #4D9FFF;
+    border-radius: 45px;
+    outline: none;
+    text-align: center;
+}
+
+.inputCont > input:focus
+{
+    border: 3px cyan solid;
+}
+
+.profInfoCont > button
+{
+    width: 15vw;
+    height: 8vh;
+    background-color: #4D9FFF;
+    color: white;
+    border: 0;
+    border-radius: 45px;
+    font-size: 1.2rem;
+    transition: 0.8s;
+}
+
+.profInfoCont > button:hover
+{
+    background-color: white;
+    color: #4D9FFF;
+    border: 3px solid #4D9FFF;
 }

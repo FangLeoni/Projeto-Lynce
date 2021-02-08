@@ -19,11 +19,15 @@
 			$this->db = $connection->connect();
 		}
 
-		public function setClientId () { 
+		public function setClientId ($code=0) { 
 			// $bytes = random_bytes(30);
 			// $this->id = bin2hex($bytes);
-			$bytes = crc32(uniqid());
-			$this->id = $bytes;
+			if($code == 0) {
+				$bytes = rand(-10000,2147483646);
+				$this->id = $bytes;
+			} else {
+				$this->id = $code;
+			}
 		}
 
 		public function setClientName ( $name ) { $this->name = $name; }
@@ -45,7 +49,7 @@
 		public function setClientPhoto ( $photo ) { $this->photo = $photo ; }
 		public function setClientCep ( $cep ) { $this->cep = $cep ; }
 
-		public function getClientData() {
+		public function getClientDataByEmail() {
 			$sql = $this->db->prepare("SELECT * FROM tb_usuarios WHERE ds_email = :email ");
 			$sql->bindParam(":email", $this->email );
 			$sql->execute();
@@ -61,9 +65,26 @@
 				return false;
 			}
 		}
+
+		public function getClientDataByCode() {
+			$sql = $this->db->prepare("SELECT * FROM tb_usuarios WHERE cd_tecnico = :codigo");
+			$sql->bindParam(":codigo", $this->id );
+			$sql->execute();
+
+			$res = $sql->fetch(PDO::FETCH_ASSOC);
+			// print_r($res);
+			$count = $sql->rowCount();
+
+			if($count > 0) {	
+				return $res;
+
+			} else {
+				return false;
+			}
+		}
 		
 		public function verifyClient () {
-			$ClientData = $this->getClientData();
+			$ClientData = $this->getClientDataByEmail();
 	
 			if($ClientData != false) {
 				$password_hash = $ClientData["ds_senha"];
@@ -84,7 +105,7 @@
 		}
 
 		public function createClient() {
-			$ClientData = $this->getClientData();
+			$ClientData = $this->getClientDataByEmail();
 	
 			if($ClientData == false) {
 				$sql = $this->db->prepare("INSERT INTO `tb_usuarios` (
@@ -155,6 +176,67 @@
 				return false;
 			}
 		}
+
+		public function updateClientProfilePhoto() {
+			$sql = $this->db->prepare("UPDATE tb_usuarios SET `md_Picture` = :imagem WHERE ds_email = :email");
+			$data = [	
+				"email" => $this->email,
+				"imagem" => $this->photo
+			];
+			print_r($data);
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return "registrou no banco";
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao mudar imagem no banco"));
+			}
+		}
+
+		public function updateClientProfileData() {
+			$sql = $this->db->prepare(" UPDATE tb_usuarios SET 
+															nm_usuario = :name,
+															ds_email = :email,
+															ds_telefone = :phone,
+															sg_estado = :state,
+															nm_cidade = :city
+														   WHERE cd_usuario = :id "
+			);
+			$data = [	
+				"id" => $this->id,
+				"name" => $this->name,
+				"email" => $this->email,
+				"phone" => $this->phone,
+				"state" => $this->state,
+				"city" => $this->city
+			];
+			
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return $status;
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao atualizar perfil"));
+			}
+		}
+		
+		public function updateProfilePassword() {
+			$sql = $this->db->prepare("UPDATE tb_usuarios SET `md_Picture` = :imagem WHERE cd_usuario = :codigo");
+			$data = [	
+				"codigo" => $this->id,
+				"imagem" => $this->photo
+			];
+			
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return "Registrou no banco";
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao mudar imagem no banco"));
+			}
+		}
+
+		
 
 	}
 

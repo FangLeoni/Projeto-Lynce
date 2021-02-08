@@ -11,69 +11,54 @@
 
     $infos = $mensagens->getConv();
 
-    if($infos != false) {
+    if($infos != false ) {
+        ?>
+        <div class="topCont">
+            <a href="./home.php" class="voltar"><--</a>
 
-        foreach($infos as $info){
+            <div class="photoCont" onclick="loadProfile()">
+                <img src="/server/profilePics/<?php echo $_SESSION['codigo']?>/<?php echo $_SESSION['profPic'] ?>" alt="perfil">
+            </div>
+        </div>
+            <form class="searchBar">
+                <input type="text" name="search" autocomplete="off">
+            </form>
             
-            ?>
+            <div class="inbox">
+                <?php
 
-                <div class="userConversation" onclick="chat(<?php echo $info['cd_conversa']; ?>,<?php echo $tipo == 'cliente' ? $info['cd_tecnico'] : $info['cd_usuario']; ?>); subscribe(<?php echo $info['cd_conversa']; ?>) ;">
-                        <img src="/server/profilePics/<?php echo $info['md_picture']; ?>" alt="user">
-                        <div>
-                            <h4><?php echo $tipo == 'cliente' ? $info['nm_tecnico'] : $info['nm_usuario']; ?></h4>
-                            <h4><?php echo $info['nm_cidade']; ?></h4>
-                        </div>
-                    </div>
-            <?php
-        }
+                    foreach($infos as $info){
+                                
+                        ?>
+                        
+                            <div 
+                                class="userConversation" 
+                                onclick="chat(<?php echo $info['cd_conversa']; ?>,<?php echo $tipo == 'cliente' ? $info['cd_tecnico'] : $info['cd_usuario']; ?>); subscribe(<?php echo $info['cd_conversa']; ?>);"
+                            >
+                                <img src="/server/profilePics/<?php echo $tipo == 'cliente' ? $info['cd_tecnico'] : $info['cd_usuario']; ?>/<?php echo $info['md_picture']; ?>" alt="user">
+                                <div>
+                                    <h4><?php echo $tipo == 'cliente' ? $info['nm_tecnico'] : $info['nm_usuario']; ?></h4>
+                                    <h4><?php echo $info['nm_cidade']; ?></h4>
+                                </div>
+                                <ul id="menu">
+                                    <li class="menu-item" onclick="otherProfile(<?php echo $tipo == 'cliente' ? $info['cd_tecnico'] : $info['cd_usuario']; ?>)">Perfil</li>
+                                    <li class="menu-item" onclick="checkDeleteConv(<?php echo $info['cd_conversa']; ?>)">Excluir Conversa</li>
+                                </ul>
+                            </div>
+                            
+                        <?php
+                    }
+                    
+                ?>
+            </div>
         
+        <?php
+
     } else {
         echo "<p class='noResults'>Sem resultados</p>";
     }
 
-    // $sql = "SELECT cd_" . $tipo . " FROM tb_" . $tipo . "s WHERE ds_email LIKE '$email' ";
-
-    
-    // $query = mysqli_query($conexao,$sql);
-    // $codigo = $query->fetch_assoc();
-    
-    // // echo $codigo['cd_usuario'];
-
-    // $codigo = $codigo['cd_'. $tipo];
-    
-    // // $sql = "SELECT fk_" . $outro . " FROM tb_conversas WHERE fk_" . $tipo . " = '$codigo' ";
-
-    // $sql = "SELECT cd_conversa, tc.nm_" . $outro . ", tc.nm_cidade, tc.md_picture FROM tb_conversas AS conv  
-    //         JOIN tb_" . $outro . "s AS tc ON conv.fk_" . $outro . " = tc.cd_" . $outro . "
-    //         WHERE fk_" . $tipo . " = '$codigo'";
-
-    // // echo $sql;
-    // $query = mysqli_query($conexao,$sql);
-
-    // $count = mysqli_num_rows($query);
-
-    // if($count < 1) {
-    //     echo "<p class='noResults'>Sem conversas anteriores</p>";
-
-    // } else {
-    //     while($user = $query->fetch_assoc()){
-    //         ?>
-    <!-- //             <div class="userConversation" onclick="chat(<?php //echo $user['cd_conversa'] ?>)" >
-    //                 <img src="../../profilePics/<?php //echo $user['md_picture']; ?>" />
-        
-    //                 <div>
-    //                     <h4><?php //echo $user['nm_'. $outro] ?></h4>
-    //                     <h4><?php //echo $user['nm_cidade']; ?></h4>
-    //                 </div>
-    //             </div> -->
-    <?php 
-    //     }
-    // }
-
-    // mysqli_close($conexao);
-  
 ?>
-
 
     
     

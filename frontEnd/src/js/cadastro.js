@@ -41,11 +41,9 @@ formulario.addEventListener("submit",(e)=>{
                 text: "Cadastro realizado com sucesso!",
                 icon: 'success',
                 confirmButtonText: "Ok"
-            }).then((isConfirmed) => {if(isConfirmed) location.href = './login.html'}) 
-                            
+            }).then((isConfirmed) => {if(isConfirmed) location.href = './login.html'})               
         })
         .catch((err) => {
-            // alert(error);
             Swal.fire({
                 title: 'Oops!',
                 text: err,
