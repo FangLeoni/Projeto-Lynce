@@ -1,0 +1,464 @@
+body 
+{
+    display: flex;
+    align-items: center;
+}
+
+.leftBar
+{
+    height: 100vh;
+    width: 30%;
+    /* background-color: teal; */
+    background: linear-gradient(166.62deg, #FFFFFF 0%, rgba(218, 218, 218, 0.984375) 96.9%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topCont
+{
+    /* background-color: violet; */
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.topCont > .photoCont
+{
+    /* background-color: yellow; */
+    height: 100%;
+}
+
+.topCont > .photoCont > img
+{
+    height: 100%;
+    border-radius: 45px;
+    cursor: pointer;
+}
+
+.selected
+{
+    border: 2px cyan solid;
+}
+
+.loadingBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchBar
+{
+    /* background-color: yellowgreen; */
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBar > input
+{
+    width: 80%;
+    height: 60%;
+    border-radius: 45px;
+    border: 2px solid #4D9FFF;
+    outline: none;
+    padding-left: 16px;
+}
+
+.searchBar > input:focus
+{
+    border: 2px cyan solid;
+}
+
+.inbox
+{
+    /* background-color: white; */
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+.inbox::-webkit-scrollbar {
+    width: 12px;
+}
+
+.inbox::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.inbox::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.inbox .userConversation
+{
+    width: 80%;
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0.6rem 0;
+    border: 3px solid #4D9FFF;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.inbox .userConversation img
+{
+    width: 9vh;
+    height: 9vh;
+    border-radius: 45px;
+    cursor: pointer;
+}
+
+.inbox .userConversation div
+{
+    text-align: center;
+}
+
+#menu {
+    display: block;
+    background-color: white;
+    padding: 10px 0px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 30px lightgrey;
+    position: absolute;
+    transform-origin: center;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  
+  #menu.show {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: top left;
+  }
+  
+  .menu-item {
+    display: block;
+    padding: 10px 30px;
+    transition: 0.1s;
+    color: #666;
+  }
+  
+  .menu-item:hover {
+    background-color: #eee;
+    cursor: pointer;
+  }
+
+.rightBar
+{
+    height: 100vh;
+    width: 70%;
+    /* background-color: tomato; */
+    background-color: #F5F2F2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rightBar > .startConvImg
+{
+    width: 60%;
+    height: 60%;
+    margin-bottom: 10px;
+}
+
+.Chat
+{
+    /* background-color: #F5F2F2; */
+    width: 100%;
+    height: 85%;
+    overflow-y: auto;
+}
+
+.Chat::-webkit-scrollbar {
+    width: 12px;
+}
+
+.Chat::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.Chat::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.mainMessageCont
+{
+    /* background-color: green; */
+    width: 100%;
+    height: fit-content;
+    /* margin-top: 20px; */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mainUserCont
+{
+    max-width: 60%;
+    width: fit-content;
+    height: auto;
+    max-height: 30vh;
+    background-color: darkseagreen;
+    padding: 8px 8px;
+    border-radius: 5px;
+    margin: 10px 10px 10px 0px;
+    text-align: right;
+    display: flex;
+}
+
+.mainUserCont p
+{
+    /* max-width: 90%;
+    height: 100%;
+    max-height: 30vh;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    text-align: left;
+    overflow: hidden; */
+    /* background-color: forestgreen; */
+    display: -webkit-box;
+    text-align: left;
+    max-width: 90%;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mainUserCont span {
+    /* background-color: gold; */
+    text-align: right;
+    margin: 0 4px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.otherMessageCont
+{
+    /* background-color: red; */
+    width: 100%;
+    height: fit-content;
+    /* margin-top: 20px; */
+    display: flex;
+}
+
+
+.otherUserCont
+{
+    /* max-width: 60%;
+    width: fit-content;
+    height: auto;
+    max-height: 30vh;
+    background-color: darkseagreen;
+    padding: 8px 8px;
+    border-radius: 5px;
+    margin: 10px 0 10px 10px;
+    text-align: right;
+    display: flex; */
+    /* ---------- */
+    background-color: dodgerblue;
+    max-width: 60%;
+    width: fit-content;
+    height: auto;
+    max-height: 30vh;
+    padding: 8px 8px;
+    border-radius: 5px;
+    margin: 10px 0 10px 10px;
+    text-align: right;
+    display: flex;
+}
+
+.otherUserCont > p
+{
+    /* max-width: 90%;
+    height: 100%;
+    max-height: 30vh;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    text-align: left;
+    overflow: hidden; */
+    /* background-color: forestgreen; */
+    display: -webkit-box;
+    text-align: left;
+    max-width: 90%;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.otherUserCont > span {
+    text-align: right;
+    margin: 0 4px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.messageForm
+{
+    /* background-color: #F5F2F2; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+}
+
+.messageForm > input
+{
+    width: 80%;
+    height: 50%;
+    border-radius: 45px;
+    border: 2px solid #4D9FFF;
+    outline: none;
+    padding-left: 16px;
+}
+
+.messageForm > input:focus
+{
+    border: 2px cyan solid;
+}
+
+.messageForm > button
+{
+    width: 8vh;
+    height: 8vh;
+}
+
+
+.profileCont 
+{
+    /* background-color: aqua; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.imgProfCont
+{
+    height: 20vh;
+    border-radius: 50%;
+}
+
+.imgProfCont #uploadPic {
+    width: 20vh;
+    height: 100%;
+    /* background-color: blueviolet; */
+    display: flex;
+    align-items: flex-end;
+}
+
+.imgProfCont #uploadPic #profilePhoto 
+{
+    height: 90%;
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid #4D9FFF;
+}
+
+.imgProfCont #uploadPic input
+{
+    width: 20vh;
+    height: 20vh;
+    position: absolute;
+    z-index: 2;
+    background-color: teal;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+/* ----------------------------- */
+
+.profInfoCont 
+{
+    width: 80%;
+    height: 100%;
+    /* background-color: teal; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.inputCont
+{
+    /* background-color: yellow; */
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputCont > label
+{
+    /* background-color: blueviolet; */
+    /* width: 100%; */
+}
+
+.inputCont > input
+{
+    width: 90%;
+    height: 60%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 3px solid #4D9FFF;
+    border-radius: 45px;
+    outline: none;
+    text-align: center;
+}
+
+.inputCont > input:focus
+{
+    border: 3px cyan solid;
+}
+
+.profInfoCont > button
+{
+    width: 15vw;
+    height: 8vh;
+    background-color: #4D9FFF;
+    color: white;
+    border: 0;
+    border-radius: 45px;
+    font-size: 1.2rem;
+    transition: 0.8s;
+}
+
+.profInfoCont > button:hover
+{
+    background-color: white;
+    color: #4D9FFF;
+    border: 3px solid #4D9FFF;
+}

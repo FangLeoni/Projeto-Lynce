@@ -1,0 +1,50 @@
+:root {
+    --primary-color: #072D36;
+    --primary-color-dark: #032128;
+    --secondary-color: #F2F2F2;
+    --bg-dark: #131418;
+    --bg-dark-secondary: #0E0E11;
+    --underline-color: #2EFF81;
+    --button-secondary-color:#00DA8B;
+    --link-font-color: #00FFF0;
+    --primary-font-color: #FFF ;
+}
+
+@font-face {
+    font-family: Polentical Neon;
+    src: url(../assets/fonts/Polentical-Neon-Regular.ttf) ;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../assets/fonts/Poppins-Regular.ttf) ;
+}
+
+@font-face {
+    font-family: Fira Code;
+    src: url(../assets/fonts/FiraCode-Regular.ttf) ;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+.voltar:link,
+.voltar
+{
+    font-family: Fira Code;
+    font-weight: bolder;
+    font-size: 20px;
+    color: #4D9FFF;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.voltar:visited,
+.voltar
+{
+    color: #4D9FFF;
+    text-decoration: none;
+}

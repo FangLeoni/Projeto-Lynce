@@ -1,0 +1,109 @@
+CADASTRO:
+- id
+- nome [Nome da loja para o técnico]
+- email
+- senha
+- telefone
+- foto
+- cep
+- endereço [técnico]
+- número de clientes simultâneos [técnico]
+
+LOGIN:
+- email
+- senha
+- tipo de conta
+
+CHAT:
+- nome
+- email ou telefone
+- id do otherUser
+- criação de código do canal
+- código do main e other User pra saber pra quem mandar a mensagem
+
+/*
+    Quando o mainUser mandar uma mensagem (sendMessage)
+    o otherUser vai receber por meio do websocket.
+    O registro no banco de dados vai ser independente
+*/
+
+QUESTIONÁRIO:
+- marca
+- código do celular
+- problema aparente
+- tipos de celulares
+
+
+
+cada indício de ser o problema precisa ser listado
+cada pergunta aumenta um ponto no indício
+fazer a média e calcular a porcetagem
+criar tabela de chance: baixa média e alta
+|---------------------------------------|
+| problema 1 | problema  2 | problema 3 |
+|---------------------------------------|
+| indício 1  | indício 1   | indício 1  |
+| indício 2  | indício 2   | indício 2  |
+| indício 3  | indício 3   | indício 3  |
+|------------|-------------|------------|
+| indício 1  | indício 1   | indício 1  |
+|  4 pontos  |  1 ponto    |  3 pontos  |
+|------------|-------------|------------|
+| indício 2  | indício 2   | indício 2  |
+|  3 pontos  |  5 pontos   |  1 ponto   |
+|------------|-------------|------------|
+| indício 3  | indício 3   | indício 3  |
+|  0 pontos  |  2 pontos   |  5 pontos  |
+|------------|-------------|------------|
+|   total    |    total    |   total    |
+|------------|-------------|------------|
+|      7     |      8      |     9      |
+|------------|-------------|------------|
+|          total de 24 pontos           |
+|------------|-------------|------------|
+|  p= 7/24   |  p= 8/24    |  p= 9/24   |     
+|   29.1%    |    33%      |   37.5%    |
+|            |             |            |
+|------------|-------------|------------|
+
+----------------------------------------------------------
+-- -------------------- Backend --------------------- --
+
+Usuários:
+
+1 arquivo de usuário
+1 arquivo de técnico
+- método para verificação
+- método para busca de dados
+- método para criação
+
+1 arquivo de CADASTRO
+1 arquivo de LOGIN
+
+Chat: 
+
+1 arquivo para procurar pessoas
+1 arquivo para criar conversas
+1 arquivo para carregar conversas
+1 arquivo para carregar o Chat
+1 arquivo para deletar conversas
+
+- Testar criar arquivo JSON para armazenar temporariamente a conversa para evitar requisições 
+demais no banco
+
+Questinário:
+
+1 arquivo para carregar modelos conforme a marca (APIs)
+1 arquivo para carregar perguntas (DB)
+1 arquivo para carregar respostas relacionadas a essa pergunta (DB)
+1 arquivo para registrar o questionário finalizado
+1 arquivo para gerar o PDF
+
+-- -------------------- Websocket --------------------- --
+
+1 método para conexão
+1 método de envio de mensagens
+1 método de recebimento de mensagens
+1 método para excluir mensagens
+1 método para quebrar conexão
+

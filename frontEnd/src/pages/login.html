@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../assets/images/logo_semFundo.png" type="image/x-icon">
+
+    <title>Login</title>
+    <!-- ---- CSS ---- -->
+    <link rel="stylesheet" href="../../themes/global.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <!-- ------------- -->
+
+    <!-- ---- Sweet_Alert2 ---- -->
+    <link rel="stylesheet" href="../libraries/Sweet_alert2/sweetalert2.css">
+    <script src="../libraries/Sweet_alert2/sweetalert2.js"></script>
+    <!-- ---------------------- -->
+
+</head>
+<body>
+    <header>
+        <h1>PROJETO</h1> <img src="../../assets/images/logo_semFundo.png" alt="logo" class="logo"> <h1>LYNCE</h1>
+    </header>
+    <div class="container">
+        <h1>LOGIN</h1>
+        <form>
+            <div class="col">
+                <div class="inputBox">
+                    <input type="email" name="email" id="email" required="required">
+                    <span class="text" >Email</span>
+                    <span class="line" ></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="inputBox">
+                    <input type="password" name="senha" id="senha" required="required">
+                    <span class="text" >Senha</span>
+                    <span class="line" ></span>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="radioBox">
+                    <label for="tipo">Tecnico</label>
+                    <input type="radio" name="tipo" id="tecnico" value="tecnico" required="required">
+                    <label for="tipo">Cliente</label>
+                    <input type="radio" name="tipo" id="Cliente" value="cliente" required="required" checked>
+                </div>
+            </div>
+
+            <input type="submit" value="ENTRAR" >
+        </form>
+        <h5>Não tem uma conta? <a href="./cadastro.html" class="link">Cadastre-se!</a></h5>
+        <h5>Esqueceu a senha? <a href="#" class="link">Clique aqui!</a></h5>
+    </div>
+
+    <!-- ---------------- VLibras------------- -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    <!-- ---------------- VLibras------------- -->
+
+    <script>
+        let formulario = document.querySelector("form");
+
+        formulario.addEventListener("submit",(e)=>{
+            e.preventDefault();
+
+            const formData = new FormData(formulario)
+
+            const url = "/server/php/login.php";
+            const options = {
+                method: "POST",
+                body: formData
+            }
+            
+            fetch(url,options)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response;
+            })
+            .then((res) => {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: "Login realizado com sucesso!",
+                    icon: 'success',
+                    confirmButtonText: "Ok"
+                }).then((isConfirmed) => {if(isConfirmed) location.href = './home.php'})        
+            })
+            .catch((err) => {
+                Swal.fire({
+                    title: 'Oops!',
+                    text: err,
+                    icon: 'error',
+                    confirmButtonText: "Tentar novamente"
+                })
+            });
+        })
+
+    </script>
+
+</body>
+</html>
