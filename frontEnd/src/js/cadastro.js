@@ -80,7 +80,7 @@ const tipos = document.querySelectorAll('input[name="tipo_conta"]')
                     for(const col of tec_col ) {
                         col.className = "col"
                     }
-                } else if (tipo.checked && tipo.value == "usuario") {
+                } else if (tipo.checked && tipo.value == "cliente") {
                     for(const col of tec_col ) {
                         col.className = "tec_col"
                     }

@@ -22,11 +22,11 @@
 		}
 
 		public function setTechId ($code=0) { 
-			// $bytes = random_bytes(30);
-			// $this->id = bin2hex($bytes);
+			// $bytes = random_bytes(30);  
+			// $this->id = bin2hex($bytes);  // gera 60 caracteres, o dobro do random_bytes
 			if($code == 0) {
-				$bytes = rand(-10000,2147483646);
-				$this->id = $bytes;
+				$bytes = random_bytes(30);  
+				$this->id = bin2hex($bytes);
 			} else {
 				$this->id = $code;
 			}
@@ -121,7 +121,7 @@
 														 sg_estado,
 														 nm_cidade,
 														 ds_endereco,
-														 qt_numero_complementar
+														 ds_numero_complementar
 														) VALUES (
 														 :id,
 														 :name,
@@ -187,7 +187,7 @@
 		}
 
 		public function updateTechProfilePhoto() {
-			$sql = $this->db->prepare("UPDATE tb_tecnicos SET `md_Picture` = :imagem WHERE ds_email = :email");
+			$sql = $this->db->prepare("UPDATE tb_tecnicos SET `md_picture` = :imagem WHERE ds_email = :email");
 			$data = [	
 				"email" => $this->email,
 				"imagem" => $this->photo
@@ -199,6 +199,37 @@
 				return "registrou no banco";
 			} else {
 				return die(header("HTTP/1.0 401 Falha ao mudar imagem no banco"));
+			}
+		}
+
+		public function updateTechProfileData() {
+			$sql = $this->db->prepare(" UPDATE tb_tecnicos SET 
+															nm_tecnico = :name,
+															ds_email = :email,
+															ds_telefone = :phone,
+															sg_estado = :state,
+															nm_cidade = :city,
+															ds_endereco = :endereco,
+															ds_numero_complementar = :numComp
+														   WHERE cd_tecnico = :id "
+			);
+			$data = [	
+				"id" => $this->id,
+				"name" => $this->name,
+				"email" => $this->email,
+				"phone" => $this->phone,
+				"state" => $this->state,
+				"city" => $this->city,
+				"endereco" => $this->address,
+				"numComp" => $this->compNumber
+			];
+			
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return $status;
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao atualizar perfil"));
 			}
 		}
 

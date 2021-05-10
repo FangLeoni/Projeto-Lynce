@@ -28,9 +28,9 @@
 
     <section class="leftBar">
         <div class="topCont">
-            <a href="./algumProblema.php" class="voltar"><--</a>
+            <a href="./home.php" class="voltar"><--</a>
 
-            <div class="photoCont">
+            <div class="photoCont" onclick="loadProfile()">
                 <img src="/server/profilePics/<?php echo $_SESSION['codigo']?>/<?php echo $_SESSION['profPic'] ?>" alt="perfil">
             </div>
         </div>
@@ -100,34 +100,6 @@
             conn.send(JSON.stringify({command: "message", message: msg}));
         }        
 
-        async function loadProfile() {
-            const url = "/server/php/profile.php";
-            
-            await fetch(url)
-            .then((res) => res.text())
-            .then((html) => {
-                leftBar.innerHTML = html;
-            })
-            .catch((err) => console.log(`Não foi possivel carregar: ${err}`));
-
-            const profilePhotoInput = document.querySelector("#profilePhotoInput");
-            const uploadPic = document.querySelector("#uploadPic");
-            updateProfile()
-            profilePhotoInput.addEventListener("change",async () => { 
-                const formData = new FormData(uploadPic)
-                const url = "/server/php/updatePhoto.php";
-                
-                const options = {
-                    method: "POST",
-                    body: formData
-                }
-
-                await fetch(url,options)
-                .then((res) => loadProfile())
-                .catch((err) => console.log(`Não foi possivel carregar: ${err}`));
-            })
-        }
-
         async function updateProfile() {
             const form = document.querySelector(".profInfoCont");
             form.addEventListener("submit",(e)=>{
@@ -171,6 +143,36 @@
             })
             
         }
+
+        async function loadProfile() {
+            const url = "/server/php/profile.php";
+            
+            await fetch(url)
+            .then((res) => res.text())
+            .then((html) => {
+                 
+                leftBar.innerHTML = html;
+                
+            })
+            .catch((err) => console.log(`Não foi possivel carregar: ${err}`));
+
+            const profilePhotoInput = document.querySelector("#profilePhotoInput");
+            const uploadPic = document.querySelector("#uploadPic");
+            updateProfile()
+            profilePhotoInput.addEventListener("change",async () => { 
+                const formData = new FormData(uploadPic)
+                const url = "/server/php/updatePhoto.php";
+                
+                const options = {
+                    method: "POST",
+                    body: formData
+                }
+
+                await fetch(url,options)
+                .then((res) => loadProfile())
+                .catch((err) => console.log(`Não foi possivel carregar: ${err}`));
+            })
+        }
         
         async function loadInbox() {
 
@@ -179,11 +181,20 @@
             await fetch(url)
             .then((res) => res.text())
             .then((html) => {
-                leftBar.innerHTML = html;
+                if(html != false) {
+                    leftBar.innerHTML = html;
+                } else {
+                    // inbox.innerHTML = html;
+                    // console.log(html)
+                }
             })
             .catch((err) => console.log(`Não foi possivel carregar: ${err}`));
-            const photoCont = document.querySelector(".photoCont");
+            // const photoCont = document.querySelector(".photoCont");
             
+            // photoCont.addEventListener("click",() => {
+            //     loadProfile();
+            // })
+
             const clickables = document.querySelectorAll('.userConversation')
             const menus = document.querySelectorAll('#menu')
             
@@ -333,12 +344,13 @@
                 if(menssageInput.value.length > 0) {
                     
                     let d = new Date(); 
-                    d = `${d.getHours()}/${d.getMinutes()}/${d.getSeconds()}`
+                    // d = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+                    // 2021-04-13 10:57:26 //
                     chatConv.innerHTML += `
                         <div class="mainMessageCont">
                             <div class="mainUserCont">
                                 <p>${menssageInput.value}</p>
-                                <span> ${d} //</span>
+                                <span> ${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} //</span>
                             </div>
                         </div>
                     `;
@@ -370,7 +382,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => { 
-            loadInbox(); 
+            loadInbox();
         });
 
         
@@ -378,6 +390,17 @@
            
     
     </script>
+
+<!-- <script src="../js/loadInbox.js"></script> -->
+    <!-- <script src="../js/loadProfile.js"></script> -->
+    <!-- <script src="../js/webSocket.js"></script>
+    <script src="../js/updateProfile.js"></script>
+    <script src="../js/searchFunc.js"></script>
+    <script src="../js/readURL.js"></script>
+    <script src="../js/otherProfile.js"></script>
+    <script src="../js/deleteConv.js"></script>
+    <script src="../js/checkDeleteConv.js"></script>
+    <script src="../js/chat.js"></script> -->
 
 </body>
 </html>

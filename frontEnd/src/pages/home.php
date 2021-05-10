@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if($_SESSION['logado'] != true ) {
+        header("Location: login.html");
+    }
+    else {
+    }
+?> 
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -12,69 +21,49 @@
   </head>
 
   <body>
-  <?php
-        session_start();
 
-        if($_SESSION['logado'] != true ) {
-            header("Location: ./login.html");
-        }
-        else {
-        }
-    ?> 
 
-    <div class="sair">
-      <a href="/server/php/logout.php">
-        <!-- <h2>sair <?php //echo $_SESSION['codigo'] ?></h2> -->
-        <h2>sair</h2>
-      </a>
-    </div>
-
-    <div class="left-top">
-      <a href="./algumProblema.php">
-        <div class="problemaContainer">
-          <div class="imgContainer">
-            <img
-              class="celularImg"
-              src="../../assets/icons/celular-quebrado.png"
-              alt="celular-quebrado"
-            />
-          </div>
-          <h2 class="primario-text">Algum Problema?</h2>
-        </div>
-      </a>
-    </div>
+    <div class="bgTriangle"></div>
     
-    <div class="centerContanier">
-      <h1 class="projeto-text">PROJETO</h1>
-      <div class="centerLogo">
-        <img src="../../assets/images/logo_semFundo.png" alt="">
-      </div>
-      <h1 class="lynce-text">LYNCE</h1>
-    </div>
-
-    <div class="rightContainer">
-      <a href="./dicasRapidas.php">
-        <div class="secundario-div">
-          <div class="imgContainer">
-            <img class="lamp-img" src="../../assets/icons/dica-icone.svg" alt="lamp" />
-          </div>
-          <h2 class="secundario-text">Dicas Rápidas</h2>
-        </div>
+    <main class="buttonsGrid">
+      <a href="./formularioParte1.php" class="linkButtons Item1">
+            <img class="lamp-img" src="../../assets/icons/celular-quebrado.png" alt="lamp" />
+          <h2 class="secundario-text">Algum problema ?</h2>
       </a>
-    </div>
+
+      <a href="./mapa.php" class="linkButtons Item2">
+          <img class="lamp-img" src="../../assets/icons/map_pin.svg" alt="lamp" />
+          <h2 class="secundario-text">Mapa</h2>
+      </a>
+
       
+      <a href="./dicas-rapidas.php" class="linkButtons Item4">
+          <img class="lamp-img" src="../../assets/icons/bulbIcon.svg" alt="lamp" />
+          <h2 class="secundario-text">Dicas Rápidas</h2>
+      </a>
+      
+      <a href="./chat.php" class="linkButtons Item3">
+            <img class="lamp-img" src="../../assets/icons/chatIcon.svg" alt="lamp" />
+          <h2 class="secundario-text">Chat</h2>
+      </a>
+
+      <a href="#" class="logoImg Item5">
+        <img src="../../assets/images/logo_semFundo.png" alt="">
+      </a>
+      
+    </main>
+    
     <!-- ---------------- VLibras------------- -->
     <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-          <div class="vw-plugin-top-wrapper"></div>
-        </div>
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
       </div>
-      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script>
-    <!-- ---------------- VLibras------------- -->
-
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+  <!-- ---------------- VLibras------------- -->
   </body>
 </html>

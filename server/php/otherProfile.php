@@ -16,7 +16,7 @@
         $clienteClass = new Clients();
         $clienteClass->setClientId($otherId);
 
-        $res = $clienteClass->getTechDataByCode();
+        $res = $clienteClass->getClientDataByCode();
     }
     
     if($res) {
@@ -32,14 +32,14 @@
             <div class="profileCont">
                 <div class="imgProfCont">
                     <div id="uploadPic" >
-                        <img src="/server/profilePics/<?php echo $tipo == 'cliente' ? $res['cd_tecnico'] : $res['cd_usuario']; ?>/<?php echo $res['md_picture']; ?>" alt="perfil" id="profilePhoto" >
+                        <img src="/server/profilePics/<?php echo $tipo == 'cliente' ? $res['cd_tecnico'] : $res['cd_cliente']; ?>/<?php echo $tipo == 'cliente' ? $res['md_picture'] : $res['md_Picture']; ?>" alt="perfil" id="profilePhoto" >
                     </div>
                 </div>
 
                 <form class="profInfoCont">
                     <div class="inputCont">
                         <label for="name">Nome</label>
-                        <p><?php echo $tipo != 'cliente' ? $res['nm_usuario'] : $res['nm_tecnico']; ?></p>
+                        <p><?php echo $tipo != 'cliente' ? $res['nm_cliente'] : $res['nm_tecnico']; ?></p>
                     </div>
                     <div class="inputCont">
                         <label for="email">Email</label>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="inputCont">
                         <label for="address">Numero Complementar</label>
-                        <p><?php echo $res['qt_numero_complementar']; ?></p>
+                        <p><?php echo $res['ds_numero_complementar']; ?></p>
                     </div>
                         <?php
                     } ?>

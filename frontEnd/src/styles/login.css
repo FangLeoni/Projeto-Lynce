@@ -1,0 +1,169 @@
+body 
+{
+    background-color: #072D36;
+}
+
+header 
+{
+    display: flex;
+    background-color: var(--primary-color-dark);
+    align-items: center;
+    justify-content: space-evenly;
+    height: 5.5rem;
+}
+
+h1 
+{
+    /* margin: 0 auto; */
+    font-family: Polentical Neon;
+    color: var(--primary-font-color);
+}
+
+header a
+{
+    height: 100%;
+}
+
+.logo 
+{
+    margin-left: 0rem;
+    margin-right: 3rem;
+    margin-top: 5%;
+    height: 160%;
+}
+
+.container 
+{
+    width: 100%;
+    background: var(--primary-color);
+    height: calc(100vh - 5.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form 
+{
+    width: 40vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+form .col 
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    padding: 0 10px;
+    margin: 20px 0 10px;
+}
+
+form .col .inputBox 
+{
+    position: relative;
+    width: 30vw;
+    height: 4.3rem;
+    background-color: var(--bg-dark);
+    color: var(--primary-font-color);
+    border-radius: 5px;
+}
+
+form .col .radioBox 
+{
+    position: relative;
+    width: 30vw;
+    height: 1.3rem;
+    /* background-color: var(--bg-dark); */
+    color: var(--primary-font-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+form .col .inputBox input[type="text"],
+form .col .inputBox input[type="email"],
+form .col .inputBox input[type="password"]
+{
+    height: 4.3rem;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    border: 0;
+    color: var(--primary-font-color);
+    text-align: center;
+    text-justify: center;
+    border-radius: 5px;
+}
+
+form .col .inputBox input:-webkit-autofill
+{
+    transition: all 5000s ease-in-out 0s;
+    
+}
+
+form .col .inputBox .line 
+{
+    position: absolute;
+    bottom: 4px;
+    display: block;
+    margin: 0 2%;
+    width: 96%;
+    height: 2px;
+    background-color: var(--underline-color);
+}
+
+form .col .inputBox .text 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 6rem;
+    font-size: 0.9rem;
+    padding: 0 1rem;
+    display: block;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+form .col .inputBox input:focus + .text,
+form .col .inputBox input:valid + .text 
+{
+    top: -30px;
+    left: -4px;
+}
+
+input[type="submit"]
+{
+    width: 15vw;
+    height: 3.8rem;
+    background-color: var(--bg-dark);
+    color: var(--button-secondary-color);
+    border: 0;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    transition: 0.5s;
+}
+
+input[type="submit"]:hover
+{
+    background-color: var(--bg-dark-secondary);
+}
+
+h5 {
+    color: var(--primary-font-color);
+}
+
+.link 
+{
+    color: var(--link-font-color);
+    text-decoration: none;
+}
+

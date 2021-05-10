@@ -18,7 +18,7 @@
             $clienteClass->setClientId();
             $clienteClass->setClientName($_POST['nome']);
             $clienteClass->setClientEmail ($_POST['email']);
-            $clienteClass->setClientPassword ($_POST['senha']);
+            $clienteClass->setClientPassword ($_POST['senha'], $crypto=1);
             $clienteClass->setClientPhone ($_POST['tel']);
             $clienteClass->setClientState ($_POST['estado']);
             $clienteClass->setClientCity ($_POST['cidade']);
@@ -54,7 +54,7 @@
             $tecnicoClass->setTechId();
             $tecnicoClass->setTechName($_POST['nome']);
             $tecnicoClass->setTechEmail($_POST['email']);
-            $tecnicoClass->setTechPassword($_POST['senha']);
+            $tecnicoClass->setTechPassword($_POST['senha'], $crypto=1);
             $tecnicoClass->setTechPhone($_POST['tel']);
             $tecnicoClass->setTechState($_POST['estado']);
             $tecnicoClass->setTechCity($_POST['cidade']);

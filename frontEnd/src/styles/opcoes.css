@@ -1,0 +1,95 @@
+body
+{
+    background-color: #072D36;
+}
+
+h1
+{
+    font-family: Polentical Neon,Arial, Helvetica, sans-serif;
+    color: #FFF;
+}
+
+img{
+    height: 100%;
+}
+
+header
+{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header div
+{
+    height: 100%;
+    width: 54%;
+    display: flex;
+    align-items: center;
+}
+
+form
+{
+    height: calc(100vh - 15vh);
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+h2 
+{
+    color: #FF5555;
+    text-align: center;
+}
+
+p
+{
+    color: #FFF;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    border: #FF5555 2px solid;
+}
+
+main
+{
+    width: 60%;
+    height: 45vh;
+    border: 0;
+    box-shadow: 20px 20px 20px #06262E, -10px -10px 10px #07303A, inset 10px 10px 4px #06262E, inset -10px -10px 4px #07303A;
+    background: linear-gradient(97.24deg, #07303A -21.95%, rgba(7, 48, 58, 0.984375) -21.93%, #062931 131.43%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 4vh;
+}
+
+main p {
+    color: #FFF;
+    text-align: center;
+    padding: 0;
+    border: 0;
+    font-size: 25px;
+}
+
+button,
+main a{
+    width: 18vw;
+    height: 8vh;
+    border: 0;
+    box-shadow: 20px 20px 20px #06262E, -10px -10px 10px #07303A, inset 10px 10px 4px #06262E, inset -10px -10px 4px #07303A;
+    background: linear-gradient(97.24deg, #07303A -21.95%, rgba(7, 48, 58, 0.984375) -21.93%, #062931 131.43%);
+    color: #FFF;
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
