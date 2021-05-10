@@ -1,0 +1,85 @@
+a {
+    display: inline-block;
+    width: 450px;
+    text-decoration: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+nav,
+scroll-container {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+nav {
+    width: 339px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+scroll-container {
+    text-decoration: none;
+    text-align: center;
+    padding-right: 10px;
+    /* left: 200%; */
+    display: block;
+    width: 350px;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+scroll-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 5em;
+}
+
+.dica {
+    background-color: white;
+    border-radius: 5px;
+    color: rgb(37, 37, 37);
+}
+
+li:hover {
+    transition: 0.3s;
+    background-color: rgb(116, 216, 17);
+    color: white;
+    padding: 10px;
+}
+
+.conteudo-dica {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.scroll-1 {
+    overflow-X: hidden;
+    width: 99%;
+    /* margin-top: 20px; */
+}
+
+.scroll-2 {
+    overflow: hidden;
+    width: 100%;
+    /* right: 1000px; */
+}
+
+.scroll-3 {
+    /* overflow:hidden; */
+    width: 100%;
+}
+
+.scroll-dicas {
+    margin-top: -40px;
+}
+
+.lista-box {
+    margin-top: 20px;
+}

@@ -1,0 +1,141 @@
+body
+{
+    background-color: #072D36;
+    display: flex;
+    flex-direction: column;
+}
+
+h1
+{
+    font-family: Polentical Neon,Arial, Helvetica, sans-serif;
+    color: #FFF;
+}
+
+img
+{
+    height: 100%;
+}
+
+header
+{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header div
+{
+    height: 100%;
+    width: 54%;
+    display: flex;
+    align-items: center;
+}
+
+.atencao {
+    width:50%;
+    align-self: center;
+}
+
+.atencao h2 
+{
+    color: #FF5555;
+    text-align: center;
+}
+
+.atencao p
+{
+    color: #FFF;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    border: #FF5555 2px solid;
+}
+
+
+#mapa 
+{
+    height: 40vh;
+    width: 60vw;
+    align-self: center;
+    margin: 2vh 0;
+}
+
+.opcoes
+{
+    height: 30vh;
+    width: 80%;
+    /* background-color: crimson; */
+    align-self: center;
+    margin: 4vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.opcoes .opcao
+{
+    height: fit-content;
+    width: 30%;
+    /* background-color: darkblue; */
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.opcoes .opcao p 
+{
+    font-size: 28px;
+}   
+
+.opcoes .opcao:first-child
+{
+    border: aquamarine solid 2px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.opcoes .opcao:first-child p 
+{
+    color: aqua;
+}
+
+.opcoes .opcao ul
+{
+    width: 80%;
+    list-style: circle;
+    color: #C4C4C4;
+    font-size: 1.4rem
+}
+
+.opcoes .opcao ul li
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: darkcyan; */
+}
+
+.opcoes .opcao ul li a
+{
+    height: 100%;
+}
+
+.back {
+    width: 20vw;
+    height: 10vh;
+    border: 0;
+    box-shadow: 20px 20px 20px #06262E, -10px -10px 10px #07303A, inset 10px 10px 4px #06262E, inset -10px -10px 4px #07303A;
+    background: linear-gradient(97.24deg, #07303A -21.95%, rgba(7, 48, 58, 0.984375) -21.93%, #062931 131.43%);
+    color: #FFF;
+    border-radius: 10px;
+    margin: 4vh;
+    align-self: center;
+    font-size: large;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

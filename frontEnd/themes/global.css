@@ -32,6 +32,7 @@
 }
 
 .voltar:link,
+.voltar:visited,
 .voltar
 {
     font-family: Fira Code;
@@ -42,9 +43,15 @@
     cursor:pointer;
 }
 
-.voltar:visited,
-.voltar
+
+.voltarBranco:link,
+.voltarBranco:visited,
+.voltarBranco
 {
-    color: #4D9FFF;
+    font-family: Fira Code;
+    font-weight: bolder;
+    font-size: 20px;
+    color: #FFF;
     text-decoration: none;
+    cursor:pointer;
 }

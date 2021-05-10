@@ -43,7 +43,7 @@
                 <form class="profInfoCont">
                     <div class="inputCont">
                         <label for="name">Nome</label>
-                        <input type="text" name="name" id="name" autocomplete="off" value="<?php echo $tipo == 'cliente' ? $res['nm_usuario'] : $res['nm_tecnico']; ?>">
+                        <input type="text" name="name" id="name" autocomplete="off" value="<?php echo $tipo == 'cliente' ? $res['nm_cliente'] : $res['nm_tecnico']; ?>">
                     </div>
                     <div class="inputCont">
                         <label for="email">Email</label>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="inputCont">
                         <label for="numComp">Numero Complementar</label>
-                        <input type="text" name="numComp" id="numComp" autocomplete="off" value="<?php echo $res['qt_numero_complementar']; ?>">
+                        <input type="text" name="numComp" id="numComp" autocomplete="off" value="<?php echo $res['ds_numero_complementar']; ?>">
                     </div>
                         <?php
                     } ?>

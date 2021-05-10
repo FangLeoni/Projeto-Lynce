@@ -12,19 +12,18 @@
 		public $state;
 		public $city;
 		public $photo;
-		public $cep;
 
 		public function __construct() {
 			$connection = new DbConnect();
 			$this->db = $connection->connect();
 		}
-
-		public function setClientId ($code=0) { 
-			// $bytes = random_bytes(30);
-			// $this->id = bin2hex($bytes);
+		
+		public function setClientId ($code = 0) { 
+			// $bytes = random_bytes(30);  
+			// $this->id = bin2hex($bytes);  // gera 60 caracteres, o dobro do random_bytes
 			if($code == 0) {
-				$bytes = rand(-10000,2147483646);
-				$this->id = $bytes;
+				$bytes = random_bytes(30);  
+				$this->id = bin2hex($bytes);
 			} else {
 				$this->id = $code;
 			}
@@ -32,12 +31,12 @@
 
 		public function setClientName ( $name ) { $this->name = $name; }
 		public function setClientEmail ( $email ) { $this->email = $email ; }
-		public function setClientPassword ( $pswd, $crypto=0 ) { 
+		public function setClientPassword ($pswd, $crypto = 0) { 
 			if($crypto == 0){
-				$this->pswd= $pswd ; 
+				$this->pswd = $pswd ; 
 			}
 			elseif($crypto == 1) {
-				$this->pswd= password_hash($pswd, PASSWORD_ARGON2I); 
+				$this->pswd = password_hash($pswd, PASSWORD_ARGON2I); 
 			}
 			else{
 				return false;
@@ -47,10 +46,9 @@
 		public function setClientState ( $state ) { $this->state = $state ; }
 		public function setClientCity ( $city ) { $this->city = $city ; }
 		public function setClientPhoto ( $photo ) { $this->photo = $photo ; }
-		public function setClientCep ( $cep ) { $this->cep = $cep ; }
 
 		public function getClientDataByEmail() {
-			$sql = $this->db->prepare("SELECT * FROM tb_usuarios WHERE ds_email = :email ");
+			$sql = $this->db->prepare("SELECT * FROM tb_clientes WHERE ds_email = :email ");
 			$sql->bindParam(":email", $this->email );
 			$sql->execute();
 
@@ -67,7 +65,7 @@
 		}
 
 		public function getClientDataByCode() {
-			$sql = $this->db->prepare("SELECT * FROM tb_usuarios WHERE cd_tecnico = :codigo");
+			$sql = $this->db->prepare("SELECT * FROM tb_clientes WHERE cd_cliente = :codigo");
 			$sql->bindParam(":codigo", $this->id );
 			$sql->execute();
 
@@ -82,20 +80,22 @@
 				return false;
 			}
 		}
-		
+
 		public function verifyClient () {
 			$ClientData = $this->getClientDataByEmail();
 	
 			if($ClientData != false) {
 				$password_hash = $ClientData["ds_senha"];
-
+				echo $password_hash . "<br>";
+				echo $this->pswd . "<br>";
 				$verify = password_verify( $this->pswd ,$password_hash);
-
+				echo $verify  . "<br>";
 				if($verify) {
 					return $verify;
 				}
 				else {
-					return die(header("HTTP/1.0 422 Erro com a senha!")); 
+					// return die(header("HTTP/1.0 422 Erro com a senha!")); 
+					echo "Erro com a senha!";
 				}
 			}
 			else {
@@ -108,9 +108,9 @@
 			$ClientData = $this->getClientDataByEmail();
 	
 			if($ClientData == false) {
-				$sql = $this->db->prepare("INSERT INTO `tb_usuarios` (
-														 cd_usuario,
-														 nm_usuario,
+				$sql = $this->db->prepare("INSERT INTO `tb_clientes` (
+														 cd_cliente,
+														 nm_cliente,
 														 ds_email,
 														 ds_senha,
 														 ds_telefone,
@@ -149,13 +149,13 @@
 
 		public function getMultiClientData() {
 			$sql = $this->db->prepare("SELECT
-										tc.cd_usuario,
+										tc.cd_cliente,
 										tc.nm_cidade,
-										tc.nm_usuario,
+										tc.nm_cliente,
 										tc.md_picture,
 										IF(cv.cd_conversa IS NOT NULL, cv.cd_conversa, 0 ) AS cd_conversa
-									FROM tb_usuarios AS tc
-									LEFT JOIN tb_conversas AS cv ON cv.fk_usuario = tc.cd_usuario
+									FROM tb_clientes AS tc
+									LEFT JOIN tb_conversas AS cv ON cv.fk_cliente = tc.cd_cliente
 									WHERE ds_email LIKE ?");
 			$sql->execute(array("$this->email%"));
 			
@@ -178,7 +178,7 @@
 		}
 
 		public function updateClientProfilePhoto() {
-			$sql = $this->db->prepare("UPDATE tb_usuarios SET `md_Picture` = :imagem WHERE ds_email = :email");
+			$sql = $this->db->prepare("UPDATE tb_clientes SET `md_Picture` = :imagem WHERE ds_email = :email");
 			$data = [	
 				"email" => $this->email,
 				"imagem" => $this->photo
@@ -194,13 +194,13 @@
 		}
 
 		public function updateClientProfileData() {
-			$sql = $this->db->prepare(" UPDATE tb_usuarios SET 
-															nm_usuario = :name,
+			$sql = $this->db->prepare(" UPDATE tb_clientes SET 
+															nm_cliente = :name,
 															ds_email = :email,
 															ds_telefone = :phone,
 															sg_estado = :state,
 															nm_cidade = :city
-														   WHERE cd_usuario = :id "
+														   WHERE cd_cliente = :id "
 			);
 			$data = [	
 				"id" => $this->id,
@@ -219,12 +219,16 @@
 				return die(header("HTTP/1.0 401 Falha ao atualizar perfil"));
 			}
 		}
-		
+
 		public function updateProfilePassword() {
-			$sql = $this->db->prepare("UPDATE tb_usuarios SET `md_Picture` = :imagem WHERE cd_usuario = :codigo");
+			$sql = $this->db->prepare(" UPDATE tb_clientes SET 
+															ds_senha = :senha
+														   WHERE ds_email = :email"
+			);
+			
 			$data = [	
-				"codigo" => $this->id,
-				"imagem" => $this->photo
+				"email" => $this->email,
+				"name" => $this->name
 			];
 			
 			$status = $sql->execute($data);
@@ -239,9 +243,5 @@
 		
 
 	}
-
-	
-
-
 
 ?>

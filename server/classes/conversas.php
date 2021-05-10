@@ -17,20 +17,34 @@
         
         public function setConvCode ( $convId=0 ) { 
                 
-                if($convId == 0){
-                    // $bytes = random_bytes(30);
-                    // $this->convId = bin2hex($bytes);
-                    $this->convId = rand(-10000,2147483646);
+                // if($convId == 0){
+                //     // $bytes = random_bytes(30);
+                //     // $this->convId = bin2hex($bytes);
+                //     $this->convId = rand(-10000,2147483646);
+                // } else {
+                //     $this->convId = $convId;
+                // }
+
+                if($convId == 0) {
+                    $bytes = random_bytes(30);  
+                    $this->convId = bin2hex($bytes);
                 } else {
                     $this->convId = $convId;
                 }
         }
         public function setChatCode ($code = 0) {
+            // if($code == 0) {
+            //     $this->chatId = rand(-10000,2147483646);
+            // } else {
+            //     $this->chatId = $code;
+            // }
+
             if($code == 0) {
-                $this->chatId = rand(-10000,2147483646);
-            } else {
-                $this->chatId = $code;
-            }
+				$bytes = random_bytes(30);  
+				$this->chatId = bin2hex($bytes);
+			} else {
+				$this->chatId = $code;
+			}
         }
         public function setMainUserCode ( $main ) { $this->main = $main; }
         public function setOtherUserCode ( $other ) { $this->other = $other; }
@@ -41,11 +55,11 @@
                 if($this->tipo == "cliente") {
                     $sql = $this->db->prepare("SELECT cd_conversa,tc.cd_tecnico, tc.nm_tecnico, tc.nm_cidade, tc.md_picture FROM tb_conversas AS conv  
                                            JOIN tb_tecnicos AS tc ON conv.fk_tecnico = tc.cd_tecnico
-                                           WHERE fk_usuario = ?"
+                                           WHERE fk_cliente = ?"
                     );
                 } else {
-                    $sql = $this->db->prepare("SELECT cd_conversa, tc.cd_usuario, tc.nm_usuario, tc.nm_cidade, tc.md_picture FROM tb_conversas AS conv  
-                                           JOIN tb_usuarios AS tc ON conv.fk_usuario = tc.cd_usuario
+                    $sql = $this->db->prepare("SELECT cd_conversa, tc.cd_cliente, tc.nm_cliente, tc.nm_cidade, tc.md_picture FROM tb_conversas AS conv  
+                                           JOIN tb_clientes AS tc ON conv.fk_cliente = tc.cd_cliente
                                            WHERE fk_tecnico = ?"
                     );
                 }
@@ -93,7 +107,7 @@
                                                             cd_conversa,
                                                             dt_modification,
                                                             dt_creation,
-                                                            fk_usuario,
+                                                            fk_cliente,
                                                             fk_tecnico
                                                         ) VALUES (
                                                             :id,
@@ -121,7 +135,7 @@
 
 		public function getMessages(){
 			$sql = $this->db->prepare("SELECT * FROM (
-                                            SELECT fk_conversa, ds_message, cd_main, dt_creation FROM tb_chats WHERE fk_conversa LIKE ? ORDER BY dt_creation DESC LIMIT 20
+                                            SELECT fk_conversa, ds_message, cd_main, dt_creation FROM tb_messages WHERE fk_conversa LIKE ? ORDER BY dt_creation DESC LIMIT 20
                                         ) sub
                                         ORDER BY dt_creation ASC");
 
@@ -152,17 +166,17 @@
                                                 tc.md_picture,
                                                 IF(cv.cd_conversa IS NOT NULL, cv.cd_conversa, 0 ) AS cd_conversa
                                             FROM tb_tecnicos AS tc
-                                            LEFT JOIN tb_conversas AS cv ON cv.fk_tecnico = tc.cd_tecnico AND cv.fk_usuario = :mainCode
+                                            LEFT JOIN tb_conversas AS cv ON cv.fk_tecnico = tc.cd_tecnico AND cv.fk_cliente = :mainCode
                                             WHERE(tc.ds_email LIKE :email)");
             } else {
                 $sql = $this->db->prepare("SELECT
-                                                cl.cd_usuario,
+                                                cl.cd_cliente,
                                                 cl.nm_cidade,
-                                                cl.nm_usuario,
+                                                cl.nm_cliente,
                                                 cl.md_picture,
                                                 IF(cv.cd_conversa IS NOT NULL, cv.cd_conversa, 0 ) AS cd_conversa
-                                            FROM tb_usuarios AS cl
-                                            LEFT JOIN tb_conversas AS cv ON cv.fk_usuario = cl.cd_usuario AND cv.fk_tecnico = :mainCode
+                                            FROM tb_clientes AS cl
+                                            LEFT JOIN tb_conversas AS cv ON cv.fk_cliente = cl.cd_cliente AND cv.fk_tecnico = :mainCode
                                             WHERE(cl.ds_email LIKE :email)");
             }
             
@@ -192,15 +206,15 @@
 
         public function sendMessage($message){
 
-            $sql = $this->db->prepare("INSERT INTO `tb_chats` (
-                cd_chat,
+            $sql = $this->db->prepare("INSERT INTO `tb_messages` (
+                cd_message,
                 ds_message,
                 dt_creation,
                 cd_main,
                 cd_other,
                 fk_conversa
             ) VALUES (
-                :cd_chat,
+                :cd_message,
                 :mensagem,
                 NOW(),
                 :codigoMain,
@@ -210,7 +224,7 @@
 
 
             $data = [	
-                "cd_chat" => $this->chatId,
+                "cd_message" => $this->chatId,
                 "mensagem" => $message,
                 "codigoMain" => $this->main,
                 "codigoOther" => $this->other,
@@ -230,7 +244,7 @@
 
         public function deleteConv(){
 
-            $sql = $this->db->prepare("DELETE FROM `tb_chats` WHERE fk_conversa = :convId");
+            $sql = $this->db->prepare("DELETE FROM `tb_messages` WHERE fk_conversa = :convId");
 
             $data = [	
                 "convId" => $this->convId,

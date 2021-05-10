@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background: #072D36;
+    overflow: hidden;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* 988413808 */
+
+
+/* ==========CONTAINER========== */
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+    grid-gap: 3px;
+    /* grid-template-rows: ; */
+}
+
+
+/* ========CAMADAS=========== */
+
+.navbar {
+    background-color: #032128;
+    height: 100px;
+    grid-column: 1/6;
+}
+
+.lista {
+    background-color: #032128;
+    border-radius: 10px;
+    /* height: 100vh; */
+    grid-column: 1/2;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.596);
+}
+
+.conteudo {
+    background-color: #032128;
+    height: 100vh;
+    grid-column: 2/6;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.596);
+}
+
+.rodape {
+    background-color: rgb(0, 255, 64);
+    height: 100px;
+    grid-column: 1/6;
+}
+
+.container-lista {
+    margin-top: 10px;
+    height: 100vh;
+}
+
+.conteudo-dica {
+    box-shadow: 0px 5px 5px #000000;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.conteudo-dica:hover {
+    transform: translateX(10px);
+    box-shadow: 0px 0px 15px rgb(0, 255, 234);
+    transition: 0.3s;
+}
+
+h3 {
+    font-size: 30px;
+    padding: 10px;
+}
+
+h4 {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.dica {
+    height: 98vh;
+    width: 99%;
+}
+
+a {
+    color: black;
+    /* size: 50px; */
+}
+
+
+/* =============================IMAGENS============================= */
+
+.img-conteudo {
+    width: 50%;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.486);
+    transition: 0.5s;
+}
+
+.img-conteudo-link {
+    width: 100%;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.486);
+    transition: 0.5s;
+}
+
+.img-conteudo:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 15px 5px rgba(0, 0, 0, 0.445);
+    transition: 0.5s;
+}
+
+.img-conteudo-2 {
+    width: 100%;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.486);
+    transition: 0.5s;
+}
+
+.img-conteudo-2:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 15px 5px rgba(0, 0, 0, 0.445);
+    transition: 0.5s;
+}
+
+
+/* ==========SCROLL-BAR================ */
+
+::-webkit-scrollbar-track {
+    background-color: rgb(0, 255, 234);
+    box-shadow: 0px 0px 3px rgb(0, 255, 234);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background: #032128;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+    /* box-shadow: 0px 0px 5px rgb(255, 255, 255); */
+}
+
+.titulo {
+    color: white;
+    font-size: 35px;
+}
+
+.subtitulo {
+    color: rgba(255, 255, 255, 0.527);
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+.subtitulo:hover {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    transition: 0.5s;
+    transform: scale(1.05);
+}
+
+.top-titulo {
+    padding: 10px;
+    background-color: #032128;
+    /* box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.603); */
+    border-radius: 10px;
+}
+
+
+/* =============================PRIMEIRA PAGINA======================== */
+
+.img-logo {
+    transition: 0.6s;
+    width: 30vw;
+    filter: drop-shadow(0px 3px 3px black);
+    z-index: 9;
+}
+
+.img-logo:hover {
+    transition: 0.6s;
+    transform: scale(1.1);
+}
+
+.dica-top {
+    height: 98vh;
+    width: 99%;
+}
+
+.scroll-top {
+    overflow: hidden;
+    width: 100%;
+}
+
+.titulo-2 {
+    color: white;
+    font-size: 35px;
+    text-align: left;
+    padding: 10px;
+}
+
+.voltar:link,
+.voltar {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+    font-size: 15px;
+    color: rgba(252, 252, 252, 0.597);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.voltar:visited,
+.voltar {
+    color: #FFF;
+    text-decoration: none;
+}

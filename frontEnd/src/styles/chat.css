@@ -30,14 +30,17 @@ body
 .topCont > .photoCont
 {
     /* background-color: yellow; */
+    width: 10vh;
     height: 100%;
 }
 
 .topCont > .photoCont > img
 {
     height: 100%;
-    border-radius: 45px;
+    width: 100%;
+    border-radius: 50%;
     cursor: pointer;
+    /* border: 2px black solid; */
 }
 
 .selected

@@ -42,10 +42,10 @@
     }
 
     if($res) {
-        $_SESSION["email"]= $email;
+        $_SESSION["email"] = $email;
         echo header("HTTP/1.0 200 Atualizado");
     }else {
-        die(header("HTTP/1.0 401 Erro ao guardar imagem na base de dados"));
+        $res;
     }
     
 ?>
