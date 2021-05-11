@@ -21,7 +21,7 @@
     ?>  
 
     <header>
-      <a href="./algumProblema.php" class="voltarBranco "><--</a>
+      <a href="./home.php" class="voltarBranco "><--</a>
 
       <div>
         <img src="../../assets/images/logo_semFundo.png" alt="logo" class="logo">
@@ -40,10 +40,10 @@
           <img src="../../assets/icons/samsung_logo.png" alt="Samsung">
         </div>
         <div>
-          <input type="radio" name="marca" id="">
-          <input type="radio" name="marca" id="">
-          <input type="radio" name="marca" id="">
-          <input type="radio" name="marca" id="">
+          <input type="radio" name="marca" value="Motorola">
+          <input type="radio" name="marca" value="LG">
+          <input type="radio" name="marca" value="Apple">
+          <input type="radio" name="marca" value="Samsung">
         </div>
       </section>
 
@@ -51,20 +51,20 @@
         <h2>Escolha o modelo</h2>
         <p>Você pode encontrar o código do aparelho na caixa do aparelho</p>
 
-        <select name="modelos" id="modelos">
-          <option value="AS_12908">AS_12908</option>
-          <option value="AS_12908">AS_12342308</option>
-          <option value="AS_12908">AS_12gfd8</option>
+        <select name="modelo" id="modelos">
+          <option value="SM-A526BZKJZTO">SM-A526BZKJZTO</option>
+          <option value="SM-A526BZKJZTO">SM-A526BZKJZTO</option>
+          <option value="SM-A526BZKJZTO">SM-A526BZKJZTO</option>
         </select>
       </section>
 
       <section class="modelos">
         <h2>Escolha o problema</h2>
 
-        <select name="modelos" id="modelos">
-          <option value="Tela">Tela</option>
-          <option value="Sistema">Sistema</option>
-          <option value="Bateria">Bateria</option>
+        <select name="tipoProb" id="tipo">
+          <option value="tela">Tela</option>
+          <option value="software">Sistema</option>
+          <option value="bateria">Bateria</option>
         </select>
       </section>
 
@@ -74,6 +74,25 @@
       </div>
 
     </form>
+
+<!-- 
+    <script>
+      let form = document.querySelector("form");
+
+      form.addEventListener("submit",(e) =>{
+        e.preventDefault();
+
+        const url = `/server/php/createFormulario.php`;
+
+        const formData = new FormData();
+        const options = {
+          method: "POST",
+          body: formData
+        }
+        fetch(url, options)
+        .then()
+      })
+    </script> -->
 
       
     <!-- ---------------- VLibras------------- -->

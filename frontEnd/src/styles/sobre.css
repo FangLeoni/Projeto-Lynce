@@ -41,7 +41,7 @@ a {
 
 .minimalist {
     position: relative;
-    width: 40%;
+    width: 60%;
     transition: 0.5s;
     filter: drop-shadow(5px 10px 10px #031a1f);
 }
@@ -49,7 +49,10 @@ a {
 .texto-1 {
     text-align: center;
     font-size: 140%;
-    height: 90vh;
+    height: 70vh;
+    width: 55vw;
+    /* background-color: aqua; */
+    margin: 0 auto;
 }
 
 .textos {

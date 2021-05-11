@@ -24,6 +24,16 @@
 
 
     <div class="bgTriangle"></div>
+
+    <div class="sair">
+      <a href="/server/php/logout.php">
+        <p>sair</p>
+      </a>
+    </div>
+
+    <div class="imgProfile">
+      <img src="/server/profilePics/<?php echo $_SESSION['codigo']?>/<?php echo $_SESSION['profPic'] ?>" alt="perfil">
+    </div>
     
     <main class="buttonsGrid">
       <a href="./formularioParte1.php" class="linkButtons Item1">
@@ -47,9 +57,9 @@
           <h2 class="secundario-text">Chat</h2>
       </a>
 
-      <a href="#" class="logoImg Item5">
+      <p class="logoImg Item5">
         <img src="../../assets/images/logo_semFundo.png" alt="">
-      </a>
+      </p>
       
     </main>
     

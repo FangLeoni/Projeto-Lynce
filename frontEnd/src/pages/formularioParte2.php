@@ -32,8 +32,8 @@
     </header>
     <form>
         <main>
-            <h2>DEFEITOS DE SOFTWARE</h2>
-            <p>
+            <h2 class="problema">DEFEITOS DE SOFTWARE</h2>
+            <p class="pergunta">
                 O aparelho apresenta alguma mensagem de Erro ao inicializar?
             </p>
             
@@ -50,7 +50,92 @@
               <a href="./formularioParte1.php">Anterior</a>
         </div>
       </form>
+
       
+      
+  <script>
+    let form = document.querySelector("form");
+    let problema = document.querySelector(".problema");
+    let pergunta = document.querySelector(".pergunta");
+    // let descricao = document.querySelector(".descricao");
+    
+    async function carregarJSON() {
+      const data = await fetch("/server/php/createFormulario.php")
+                        .then(res => res.json());
+      console.log(data.software);
+
+      return data.android.software;
+    }
+
+    document.addEventListener("DOMContentLoaded", async function(event) {
+      const data = await carregarJSON();
+     
+      let problemPosition = 0;
+      let questionPosition = 0;
+
+      let problemSize = data.length; 
+      
+      problema.innerHTML = data[problemPosition].problema;
+      pergunta.innerHTML = data[problemPosition].opcoes[questionPosition].pergunta;
+      // descricao.innerHTML = data[problemPosition].descricao;
+
+      form.addEventListener("submit",(e)=> {
+        e.preventDefault();
+
+
+        let trueButton = document.querySelector("#trueButton").checked;
+        let falseButton = document.querySelector("#falseButton").checked;
+        let optionSize = data[problemPosition].opcoes.length;
+        
+        if(trueButton && data[problemPosition].opcoes[questionPosition].resposta == trueButton) {
+          data[problemPosition].pontuacao =  data[problemPosition].pontuacao + data[problemPosition].opcoes[questionPosition].pontos;
+        } 
+        else if(falseButton && data[problemPosition].opcoes[questionPosition].resposta != falseButton) {
+          data[problemPosition].pontuacao =  data[problemPosition].pontuacao + data[problemPosition].opcoes[questionPosition].pontos;
+        }
+        
+
+        if(questionPosition === optionSize - 1 && problemPosition < problemSize ) {
+
+          questionPosition = 0;
+          problemPosition = problemPosition + 1;
+
+          if(problemPosition === problemSize ) {
+            console.log("--------FIM-------")
+            data.forEach((point, index) => {
+              console.log(` ${index+1} Pontos: ${point.pontuacao}`)
+            })
+
+            let formData = new FormData();
+            let objeto = {};
+            data.forEach((point, index) => {
+              objeto[`problem_${index+1}`] = point.pontuacao;
+            })
+            const url = `./gfkg.php`;
+            formData.append(`resultado`, objeto);
+
+            fetch()
+
+            console.log("--------FIM-------");
+          } else {
+            problema.innerHTML = data[problemPosition].problema;
+            // descricao.innerHTML = data[problemPosition].descricao;
+            pergunta.innerHTML = data[problemPosition].opcoes[questionPosition].pergunta;
+          }
+
+          
+        } else if(questionPosition < optionSize && problemPosition < problemSize ) {
+          questionPosition = questionPosition + 1;
+          pergunta.innerHTML = data[problemPosition].opcoes[questionPosition].pergunta;
+        }
+
+
+        
+      })
+      
+
+    });
+  </script>
       
     <!-- ---------------- VLibras------------- -->
     <div vw class="enabled">
