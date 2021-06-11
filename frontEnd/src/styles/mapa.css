@@ -53,75 +53,307 @@ header div
 }
 
 
+.mapaCont 
+{
+    width: 70%;
+    height: 40vh;
+    align-self: center;
+    /* background-color:chartreuse; */
+    display: flex;
+    align-items: center;
+    justify-content:space-around ;
+    margin-top: 2rem;
+}
+
 #mapa 
 {
-    height: 40vh;
-    width: 60vw;
+    height: 100%;
+    width: 50%;
     align-self: center;
     margin: 2vh 0;
 }
 
-.opcoes
-{
-    height: 30vh;
-    width: 80%;
-    /* background-color: crimson; */
-    align-self: center;
-    margin: 4vh 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
 
-.opcoes .opcao
+.mapaCont form
 {
-    height: fit-content;
-    width: 30%;
-    /* background-color: darkblue; */
-    color: #FFF;
+    height: 70%;
+    width: 40%;
+    /* background-color: #FF5555; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-.opcoes .opcao p 
+.mapaCont form h2 
 {
-    font-size: 28px;
+    width: 100%;
+    color: #f2f2f2;
+    text-align: left;
+}
+
+.mapaCont form input
+{
+    width: calc(100% - 15px);
+    height: 2rem;
+    background-color: #F2F2F2;
+    border: 2px solid #00FFF0;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.mapaCont form button
+{
+    height: 3.5rem;
+    width: 35%;
+    color: #F2F2F2;
+    background: linear-gradient(97.24deg, #07303A -21.95%, rgba(7, 48, 58, 0.984375) -21.93%, #062931 131.43%);
+    border: 2px solid #00DA8B;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.mapaCont form p 
+{
+    color: #F2F2F2;
+    font-size:  1.25rem;
+}
+
+.middleWarning
+{
+    align-self: center;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    font-size: 1.5rem;
+}
+
+.middleWarning img 
+{
+    height: 3rem;
+    margin: 0  0.5rem;
+}
+
+.tecnicos 
+{
+    width: 70%;
+    height: fit-content;
+    align-self: center;
+    /* background-color: darkorchid; */
+    display: grid;
+    grid-template-areas: 
+    "parceiros parceiros"
+    "licenciados maisPerto"
+    ;
+}
+
+.tecnicos .tecnicosParceiros
+{
+    grid-area: parceiros;
+    /* background-color:#131418 ; */
+}
+    
+.tecnicos .tecnicosParceiros .parceiro
+{
+    /* background-color:darkblue; */
+    width: 90%;
+    margin: 2rem auto;
+    border: 2px solid #00DA8B;
+    border-radius: 10px;
+    color: #f2f2f2;
+}
+
+.parceiro h2,
+.parceiro h1
+{
+    text-align: center;
+    font-size: 2rem;
 }   
 
-.opcoes .opcao:first-child
+.parceiro h2 span,
+.parceiro h1 span
 {
-    border: aquamarine solid 2px;
-    border-radius: 10px;
-    padding: 10px;
+    color: #D7FA00;
 }
 
-.opcoes .opcao:first-child p 
-{
-    color: aqua;
-}
-
-.opcoes .opcao ul
-{
-    width: 80%;
-    list-style: circle;
-    color: #C4C4C4;
-    font-size: 1.4rem
-}
-
-.opcoes .opcao ul li
+.parceiro .generalDataCont
 {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    /* background-color: darkcyan; */
+    justify-content: space-around;
+    margin: 2rem 0;
 }
 
-.opcoes .opcao ul li a
+.parceiro .generalDataCont .imgPerfil img
 {
     height: 100%;
+    width: 100%;
+    background-color: #D7FA00;
+    border: 2px solid #00DA8B;
+    border-radius: 5px;
 }
+
+.parceiro .generalDataCont .dataCont
+{
+    width: 50%;
+}
+
+.parceiro .generalDataCont .dataCont p
+{
+    font-size: 2rem;
+}
+
+.parceiro .generalDataCont .dataCont a
+{
+    color: #F2F2F2;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.star-widget {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    /* background-color: #00FFF0; */
+    width: 50%;
+}
+
+.star-widget input{
+    display: none;
+}
+.star-widget label{
+    font-size: 40px;
+    color: #444;
+
+    /* padding: 10px; */
+    /* float: right; */
+    transition: all 0.2s ease;
+}
+.star-widget input:not(:checked) ~ label:hover,
+.star-widget input:not(:checked) ~ label:hover ~ label{
+    color: #fd4;
+}
+.star-widget input:checked ~ label{
+    color: #fd4;
+}
+.star-widget input#rate-5:checked ~ label{
+    color: #fe7;
+    text-shadow: 0 0 20px #952;
+}
+
+.parceiro .description
+{
+    font-size: 1.5rem;
+    padding: 2rem;
+}
+
+.tecnicos .tecnico
+{
+    width: 80%;
+    justify-self: center;
+    margin: 2rem;
+}
+
+.tecnicos .tecnico p 
+{
+    color: #FFF;
+    font-size:  1.6rem;
+}
+.tecnicos .tecnico ul
+{
+    list-style: none;
+}
+
+.tecnicos .tecnico ul li
+{
+    color: #C4C4C4;
+    display: flex;
+    align-items: center;
+}
+
+/* .tecnicos .tecnico ul li::before 
+{
+    content: "•";
+    padding-right: 10px;
+    width: 2%;
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    background-color: #131414;
+    font-size: 2rem;
+    color: red; 
+} */
+
+
+.maisPerto
+{
+    grid-area: maisPerto;
+    /* background-color: blue; */
+}
+.maisPerto ul li::before 
+{
+    content: "•";
+    padding-right: 10px;
+    width: 2%;
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    /* background-color: yellow; */
+    font-size: 2rem;
+    color: #00DA8B; 
+}
+
+
+.licenciados
+{
+    grid-area: licenciados;
+}
+
+.licenciados ul li::before 
+{
+    content: "•";
+    padding-right: 10px;
+    width: 2%;
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    font-size: 2rem;
+    color: #f2f2f2; 
+}
+
+/* 
+parceiros:nth-child(1)
+{
+    grid-area: parceiros;
+    width: 40%;
+    height: 40vh;
+    justify-self: center;
+    background-color: red;
+    margin: 2rem;
+    color: #F2F2F2;
+}
+
+.tecnicos .tecnico:nth-child(1) p
+{
+    font-size: 2.5rem;
+}
+
+.tecnicos .tecnico:nth-child(2)
+{
+    grid-area: maisPerto;
+    background-color: blue;
+}
+
+.tecnicos .tecnico:nth-child(3)
+{
+    grid-area: licenciados;
+    background-color: yellow;
+}
+ */
+
+
 
 .back {
     width: 20vw;

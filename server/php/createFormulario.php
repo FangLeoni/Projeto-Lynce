@@ -3,13 +3,18 @@
     
     include_once '../classes/formulario.php';
     
-    // $marca = $_POST["marca"];
-    // $modelo = $_POST["modelo"];
-    // $tipoProb = $_POST["tipoProb"];
+    $marca = $_POST["marca"];
+    $modelo = $_POST["modelo"];
+    $tipoProb = $_POST["tipoProb"];
 
-    $marca = "Samsung";
-    $modelo = "SM-A526BZKJZTO";
-    $tipoProb = "software";
+    // $marca = "Samsung";
+    
+    // $modelo = "SM-A526BZKJZTO";
+    // $tipoProb = "software";
+
+    // echo $marca;
+    // echo $tipoProb;
+    // echo $modelo;
 
     if(isset($marca) && isset($modelo) && isset($tipoProb)) {
         $formulario = new Formulario();
@@ -17,9 +22,12 @@
         $formulario->setNmMarca($marca);
         $formulario->setNmModelo($modelo);
         $formulario->setNmTipo($tipoProb);
-        $modelo = $formulario->getAllModelos();
+        $modelo = $formulario->getModelo();
         $formulario->setFk($modelo["cd_modelo"]);
+        
         $defeitos = $formulario->getAllPossiveisDefeitos();
+
+
         $perguntas = [];
 
 
@@ -28,7 +36,13 @@
           array_push($perguntas, $formulario->getAllPerguntas());
         }
         
-        $objeto = array("software" => array());
+        $objeto = array(
+          $tipoProb => array(),
+          "marca" => $marca,
+          "modelo" => $modelo["nm_modelo"],
+          "defeito" => $tipoProb
+        );
+        // $objeto = array($tipoProb => array());
 
         foreach($defeitos as $key => $defeito){
           $temp = array(
@@ -39,7 +53,7 @@
             "opcoes" => array()
           );
 
-          array_push( $objeto["software"], $temp );
+          array_push( $objeto[$tipoProb], $temp );
 
           foreach($perguntas as $pergunta){
             foreach($pergunta as $perg) {
@@ -50,14 +64,15 @@
                   "pontos" => intval($perg["qt_pontos"])
                 );
                 
-                array_push( $objeto["software"][$key]["opcoes"], $temp2 );
+                array_push( $objeto[$tipoProb][$key]["opcoes"], $temp2 );
               }
             }
           }
           
         }
-        setcookie("", "Luxury Car", time()+2*24*60*60);
-        return json_encode($objeto);
+        
+        echo json_encode($objeto);
+        
     } 
 
 ?>

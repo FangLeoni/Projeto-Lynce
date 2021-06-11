@@ -164,8 +164,8 @@
       }
 		}
 
-		public function getAllModelos() {
-			$sql = $this->db->prepare("SELECT cd_modelo FROM tb_modelos AS m
+		public function getModelo() {
+			$sql = $this->db->prepare("SELECT cd_modelo, nm_modelo FROM tb_modelos AS m
                                  JOIN tb_marcas AS mar ON mar.cd_marca = m.fk_marca
                                  WHERE( mar.nm_marca = :marca AND nm_modelo = :modelo )
                                 ");
@@ -183,6 +183,56 @@
 				return $res;
 
 			} else {
+				return false;
+			}
+		}
+
+    public function getAllModelosMarcaEspecifica() {
+			$sql = $this->db->prepare("SELECT nm_modelo FROM tb_modelos AS m
+                                 JOIN tb_marcas AS mar ON mar.cd_marca = m.fk_marca
+                                 WHERE( mar.nm_marca = :marca )
+                                ");
+      $data = [	
+        "marca" => $this->nmMarca
+      ];
+			$sql->execute($data);
+
+			$count = $sql->rowCount();
+
+      $lista = array();
+			
+      if($count > 0) {	
+
+				while($res = $sql->fetch(PDO::FETCH_ASSOC)){
+					array_push($lista, $res);
+				}
+
+				return $lista;
+				
+			} else {
+				
+				return false;
+			}
+		}
+
+    public function getAllMarcas() {
+			$sql = $this->db->prepare("SELECT nm_marca FROM tb_marcas");
+			$sql->execute();
+
+			$count = $sql->rowCount();
+
+      $lista = array();
+			
+      if($count > 0) {	
+
+				while($res = $sql->fetch(PDO::FETCH_ASSOC)){
+					array_push($lista, $res);
+				}
+
+				return $lista;
+				
+			} else {
+				
 				return false;
 			}
 		}
@@ -209,7 +259,7 @@
 				
 			} else {
 				
-				return false;
+				return die(header("HTTP/1.0 404 Sem resultados para sua pesquisa no momento "));
 			}
 		}
 

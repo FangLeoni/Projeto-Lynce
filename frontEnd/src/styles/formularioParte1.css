@@ -152,6 +152,16 @@ color: #FFF;
     border-radius: 10px;
 } */
 
+.btnCont button {
+    width: 20vw;
+    height: 10vh;
+    border: 0;
+    box-shadow: 20px 20px 20px #06262E, -10px -10px 10px #07303A, inset 10px 10px 4px #06262E, inset -10px -10px 4px #07303A;
+    background: linear-gradient(97.24deg, #07303A -21.95%, rgba(7, 48, 58, 0.984375) -21.93%, #062931 131.43%);
+    color: #FFF;
+    border-radius: 10px;
+}
+
 .btnCont a {
     width: 20vw;
     height: 10vh;

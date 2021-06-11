@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if($_SESSION['logado'] != true ) {
+        header("Location: login.html");
+    }
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +26,6 @@
     <!-- ---------------------- -->
 </head>
 <body>
-    <?php
-        session_start();
-
-        if($_SESSION['logado'] != true ) {
-            header("Location: login.html");
-        }
-    ?> 
 
     <section class="leftBar">
         <div class="topCont">
@@ -35,7 +36,19 @@
             </div>
         </div>
         <form class="searchBar">
-                <input type="text" name="search" autocomplete="off">
+                <!-- <input type="text" name="search" autocomplete="off"> -->
+								<input 
+								type="text" 
+								name="search" 
+								autocomplete="off"
+								value="<?php 
+								if(isset($_GET["addTech"])) {
+									echo  $_GET["addTech"] ;
+								}
+									
+								?>"
+								>
+							
             </form>
             
             <div class="inbox">
@@ -176,7 +189,12 @@
         
         async function loadInbox() {
 
-            const url = "/server/php/loadInbox.php";
+            const url = "/server/php/loadInbox.php?addTech=<?php 
+								if(isset($_GET["addTech"])) {
+									echo  $_GET["addTech"] ;
+								}
+									
+								?>";
             
             await fetch(url)
             .then((res) => res.text())

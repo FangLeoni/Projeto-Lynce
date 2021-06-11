@@ -41,11 +41,13 @@
             <!-- <button type="submit" name="pdf">Baixar o pdf</button>
             <button type="submit" name="tecnico"><a href="./mapa.html">Encontrar um técnico</a></button>
             <button type="submit" name="outro">Fazer outro formulário</button> -->
-            <a href="#">Baixar o pdf</a>
+            <a href="./resultadoPDF.html" >Baixar o pdf</a>
             <a href="./mapa.php">Encontrar um técnico</a>
             <a href="./formularioParte1.php">Fazer outro formulário</a>
         </main>
     </form>
+
+    
 
       
     <!-- ---------------- VLibras------------- -->

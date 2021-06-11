@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../assets/images/logo_semFundo.png" type="image/x-icon">
+    <title>Resultado</title>
+
+    <link rel="stylesheet" href="../../themes/global.css">
+    <link rel="stylesheet" href="../styles/resultadoPDF.css">
+  </head>
+
+  <body>
+
+    <header>
+      <img src="../../assets/images/logo_semFundo.png" alt="logo" class="logo">
+     
+      <h1>PROJETO LYNCE</h1>  
+    </header>
+    <main>
+      <section class="dadosCelular">
+        <div class="marca">
+          <p>MARCA:</p>
+          <img src="../../assets/icons/samsung_logo.png" alt="">
+        </div>
+
+        <div class="modelo">
+          <p>MODELO:</p>
+          <p class="texto">SM-A526BZKJZTO</p>
+        </div>
+
+        <div class="problema">
+          <p>PROBLEMA:</p>
+          <p class="texto">tela Quebrada</p>
+        </div>
+      </section>
+
+      <div class="problemas">
+        <p>PROBLEMA 1 : Loop Infinito</p>
+        <p>DESCRIÇÃO : Ao inicializar, o aparelho fica travado na logo da marca do dispositivo de maneira ininterrupta.</p>
+        <p>POSSÍVEL SOLUÇÃO :  Substituição de Firmware</p>
+        <p>CHANCE : Médio</p>
+      </div>
+      
+      <div class="problemas">
+        <p>PROBLEMA 2 : Falha após Atualização</p>
+        <p>DESCRIÇÃO : Ao atualizar, alguma função do sistema deixa de funcionar, como câmera traseira, alto falantes e até mesmo a o funcionamento do touch.</p>
+        <p>
+          POSSÍVEL SOLUÇÃO : Downgrade, o técnico irá inserir o dispositivo no android anterior, pois nele, o aparelho estava em pleno funcionamento.
+        </p>
+        <p>CHANCE : Médio</p>
+      </div>
+
+      <div class="problemas">
+        <p>PROBLEMA 3 : Reboot Infinito</p>
+        <p>DESCRIÇÃO : O aparelho liga e desliga sozinho permanecendo travado na tela de inicialização (logo da marca), assim o impedindo de inicializar.</p>
+        <p>POSSÍVEL SOLUÇÃO : Substituição de Firmware</p>
+        <p>CHANCE : Baixo</p>
+      </div>
+
+      
+    </main>
+
+
+    <button onclick="window.print()">IMPRIMIR</button>
+    
+<script>
+  let resturnedJSON = JSON.parse(localStorage.getItem('resultado'));
+
+  const marca = document.querySelector(".marca img")
+  const modelo = document.querySelector(".modelo .texto")
+
+  const defeito = document.querySelector(".problema .texto")
+
+  const problemas = document.querySelectorAll(".problemas")
+
+  marca.src = `../../assets/icons/${resturnedJSON.marca.toLowerCase()}_logo.png`;
+  modelo.innerText = resturnedJSON.modelo;
+  defeito.innerText = resturnedJSON.defeito;
+  
+
+  problemas.forEach((item, index) => {
+    item.innerHTML = `
+      <p>PROBLEMA ${index + 1} : ${resturnedJSON.problemas[index].problema}</p>
+      <p>DESCRIÇÃO : ${resturnedJSON.problemas[index].descricao}</p>
+      <p>POSSÍVEL SOLUÇÃO : ${resturnedJSON.problemas[index].solucao}</p>
+      <p>CHANCE : ${resturnedJSON.problemas[index].chance}</p>
+    `;
+  })
+
+  // console.log(modelo)
+  // const modelo =
+  // const problema = 
+
+  // var lower = text.toLowerCase();
+  /*
+    Mandar dados para o servidor 
+    
+    
+  */
+
+  document.addEventListener("DOMContentLoaded", async function(event) {
+    
+    // const defeito = returnedJSON[returnedJSON.defeito]
+    // const problemas = returnedJSON[problemaName];
+    
+    // problema.innerHTML = data[problemPosition].problema;
+    // pergunta.innerHTML = data[problemPosition].opcoes[questionPosition].pergunta;
+    
+
+
+     
+  });
+
+  let objeto = [
+    {
+      chance: "Médio",
+      descricao: "Ao inicializar, o aparelho fica travado na logo da marca do dispositivo de maneira ininterrupta.",
+      pontuacao: 40,
+      problema: "Loop Infinito",
+      solucao: "Reparo de software Substituição de Firmware"
+    },
+    {
+      chance: "Médio",
+      descricao: "Ao atualizar, alguma função do sistema deixa de funcionar, como câmera traseira, alto falantes e até mesmo a o funcionamento do touch.",
+      pontuacao: 36,
+      problema: "Falha após Atualização",
+      solucao: "Downgrade, o técnico irá inserir o dispositivo no android anterior, pois nele, o aparelho estava em pleno funcionamento."
+    },
+    {
+      chance: "Baixo",
+      descricao: "O aparelho liga e desliga sozinho permanecendo travado na tela de inicialização (logo da marca), assim o impedindo de inicializar.",
+      pontuacao: 24,
+      problema: "Reboot Infinito",
+      solucao: "Reparo de software Substituição de Firmware"
+    }
+
+  ] 
+
+  
+</script>
+
+      
+    <!-- ---------------- VLibras------------- -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    <!-- ---------------- VLibras------------- -->
+
+  </body>
+</html>

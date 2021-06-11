@@ -1,3 +1,20 @@
+<?php
+// header('Content-type: application/json');
+// header('HTTP/1.1 301 Moved Permanently');
+
+    // session_start();
+
+    // if($_SESSION['logado'] != true ) {
+    //     header("Location: ./login.html");
+    // }
+    // echo "lolololololo";
+
+    // $data = json_decode(file_get_contents('php://input'), true);
+    // print_r($data);
+
+?> 
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -12,13 +29,7 @@
   </head>
 
   <body>
-    <?php
-        session_start();
-
-        if($_SESSION['logado'] != true ) {
-            header("Location: ./login.html");
-        }
-    ?>  
+    
 
     <header>
       <a href="./formularioParte1.php" class="voltarBranco "><--</a>
@@ -30,46 +41,80 @@
       </div>
         
     </header>
-    <form>
-        <main>
-            <h2 class="problema">DEFEITOS DE SOFTWARE</h2>
+      <form>
+          <main>
+            <h2 class="problema">Não carregou</h2>
+            
             <p class="pergunta">
-                O aparelho apresenta alguma mensagem de Erro ao inicializar?
+                Não carregou
             </p>
             
-            <div class="inputCont">
-                <!-- <input type="submit" name="true" value ="Sim">
-                <input type="submit" name="false" value = "Não"> -->
-                <a href="./opcoes.php">Sim</a>
-                <a href="./opcoes.php">Não</a>
+              <div class="inputCont">
+                <label for="">
+                Sim
+                <input type="radio" name="true" value ="true" id="trueButton">
+                </label>
+                <label for="">
+                Não
+                <input type="radio" name="true" value ="false" id="falseButton">
+                </label>
               </div>
-            </main>
+              <input type="submit" name="true" value ="Próximo">
+          </main>
 
-            <div class="btnCont">
-              <!-- <button type="submit">Anteriror</button> -->
-              <a href="./formularioParte1.php">Anterior</a>
-        </div>
       </form>
 
-      
-      
   <script>
+    let returnedJSON = JSON.parse(localStorage.getItem('returnedJSON'));
+
     let form = document.querySelector("form");
     let problema = document.querySelector(".problema");
     let pergunta = document.querySelector(".pergunta");
-    // let descricao = document.querySelector(".descricao");
-    
-    async function carregarJSON() {
-      const data = await fetch("/server/php/createFormulario.php")
-                        .then(res => res.json());
-      console.log(data.software);
+    let descricao = document.querySelector(".descricao");
 
-      return data.android.software;
+    function compare( a, b ) {
+      if ( a.pontuacao > b.pontuacao ){
+        return -1;
+      }
+      if ( a.pontuacao < b.pontuacao ){
+        return 1;
+      }
+      return 0;
+    }
+    
+    function resultRanking(newObjeto) {
+      let somaResultados = 0;
+      let arraySize = newObjeto.problemas.length
+
+      newObjeto.problemas.forEach((item) => {
+        somaResultados += item.pontuacao 
+      })
+
+      newObjeto.problemas.map((item) => {
+        item.pontuacao = Math.round(100*(item.pontuacao/somaResultados))
+      })
+      newObjeto.problemas.sort(compare)
+
+      newObjeto.problemas.length = 3;
+
+      newObjeto.problemas.forEach((item) => {
+        if(item.pontuacao >= 66) {
+          item.chance = "Alto"
+        } else if(item.pontuacao >= 33) {
+          item.chance = "Médio"
+        } else {
+          item.chance = "Baixo"
+        }
+      })
+
+      return newObjeto;
+
     }
 
+
     document.addEventListener("DOMContentLoaded", async function(event) {
-      const data = await carregarJSON();
-     
+      const data = returnedJSON[returnedJSON.defeito];
+
       let problemPosition = 0;
       let questionPosition = 0;
 
@@ -77,7 +122,7 @@
       
       problema.innerHTML = data[problemPosition].problema;
       pergunta.innerHTML = data[problemPosition].opcoes[questionPosition].pergunta;
-      // descricao.innerHTML = data[problemPosition].descricao;
+    
 
       form.addEventListener("submit",(e)=> {
         e.preventDefault();
@@ -87,15 +132,27 @@
         let falseButton = document.querySelector("#falseButton").checked;
         let optionSize = data[problemPosition].opcoes.length;
         
-        if(trueButton && data[problemPosition].opcoes[questionPosition].resposta == trueButton) {
+        if(
+          trueButton 
+          && 
+          data[problemPosition].opcoes[questionPosition].resposta == trueButton
+        ) {
           data[problemPosition].pontuacao =  data[problemPosition].pontuacao + data[problemPosition].opcoes[questionPosition].pontos;
         } 
-        else if(falseButton && data[problemPosition].opcoes[questionPosition].resposta != falseButton) {
+        else if(
+          falseButton 
+          && 
+          data[problemPosition].opcoes[questionPosition].resposta != falseButton
+        ){
           data[problemPosition].pontuacao =  data[problemPosition].pontuacao + data[problemPosition].opcoes[questionPosition].pontos;
         }
         
 
-        if(questionPosition === optionSize - 1 && problemPosition < problemSize ) {
+        if(
+            questionPosition === optionSize - 1 
+            && 
+            problemPosition < problemSize 
+        ) {
 
           questionPosition = 0;
           problemPosition = problemPosition + 1;
@@ -107,19 +164,39 @@
             })
 
             let formData = new FormData();
-            let objeto = {};
-            data.forEach((point, index) => {
-              objeto[`problem_${index+1}`] = point.pontuacao;
-            })
-            const url = `./gfkg.php`;
-            formData.append(`resultado`, objeto);
+            let objeto = {
+              "marca": returnedJSON.marca,
+              "modelo": returnedJSON.modelo,
+              "defeito": returnedJSON.defeito,
+              "problemas": []
+            };
+            data.forEach((item, index) => {
 
-            fetch()
+              objeto.problemas[index] = {
+                "problema": item.problema,
+                "descricao": item.descricao,
+                "solucao":item.solucao,
+                "pontuacao": item.pontuacao
+              };
+            })
+            
+            console.log("--------FIM-------");
+
+            let resultado = resultRanking(objeto);
+            
+            console.log(resultado);
 
             console.log("--------FIM-------");
+
+            // localStorage.removeItem('returnedJSON');
+
+            localStorage.setItem('resultado', JSON.stringify(resultado));
+            // console.log(localStorage.getItem('resultado'))
+
+
+            window.location.href = "./opcoes.php";
           } else {
             problema.innerHTML = data[problemPosition].problema;
-            // descricao.innerHTML = data[problemPosition].descricao;
             pergunta.innerHTML = data[problemPosition].opcoes[questionPosition].pergunta;
           }
 
@@ -128,12 +205,9 @@
           questionPosition = questionPosition + 1;
           pergunta.innerHTML = data[problemPosition].opcoes[questionPosition].pergunta;
         }
-
-
         
       })
       
-
     });
   </script>
       

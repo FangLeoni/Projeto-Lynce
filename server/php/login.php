@@ -40,7 +40,7 @@
         } else {
             $tecnicoClass = new Technicians();
             $tecnicoClass->setTechEmail($_POST['email']);
-            $tecnicoClass->setTechPassword($_POST['senha'], 0);
+            $tecnicoClass->setTechPassword($_POST['senha']);
             
             $res = $tecnicoClass->verifyTech();
             

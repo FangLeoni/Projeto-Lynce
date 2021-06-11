@@ -19,6 +19,5 @@
 			$mensagem = "Recebemos uma mensagem no site <br/>
 			<strong>e-mail:</strong> $_POST[email]<br/>";
 			include("../classes/mailerClass.php");
-			
 		}
 	?>

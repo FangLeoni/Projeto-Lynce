@@ -21,7 +21,18 @@
             </div>
         </div>
             <form class="searchBar">
-                <input type="text" name="search" autocomplete="off">
+                <!-- <input type="text" name="search" autocomplete="off"> -->
+                <input 
+                    type="text" 
+                    name="search" 
+                    autocomplete="off"
+                    value="<?php 
+                    if(isset($_GET["addTech"])) {
+                        echo  $_GET["addTech"] ;
+                    }
+                        
+                    ?>"
+                >
             </form>
             
             <div class="inbox">

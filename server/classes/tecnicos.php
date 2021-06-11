@@ -159,16 +159,14 @@
 
 		public function getMultiTechData() {
 			
-			$sql = $this->db->prepare("SELECT
-										tc.cd_tecnico,
-										tc.nm_cidade,
-										tc.nm_tecnico,
-										tc.md_picture,
-										IF(cv.cd_conversa IS NOT NULL, cv.cd_conversa, 0 ) AS cd_conversa
-									FROM tb_tecnicos AS tc
-									LEFT JOIN tb_conversas AS cv ON cv.fk_tecnico = tc.cd_tecnico
-									WHERE ds_email LIKE ?");
-			$sql->execute(array("$this->email%"));
+			$sql = $this->db->prepare("SELECT * FROM tb_tecnicos 
+			WHERE(nm_cidade = :cidade AND sg_estado = :estado )");
+
+			$data = [	
+				"estado" => $this->state,
+				"cidade" => $this->city
+			];
+			$sql->execute($data);
 			
 			$count = $sql->rowCount();
 			
