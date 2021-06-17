@@ -41,7 +41,7 @@
 
                 if($res) {
                     $_SESSION["profPic"] = $imagename;
-                    echo $res;
+                    // echo $res;
                 }else {
                     die(header("HTTP/1.0 401 Erro ao guardar imagem na base de dados"));
                 }

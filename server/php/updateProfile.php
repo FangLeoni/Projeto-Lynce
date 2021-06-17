@@ -37,8 +37,16 @@
         $tecnicoClass->setTechPhone($telefone);
         $tecnicoClass->setTechAddress($endereco);
         $tecnicoClass->setTechCompNumber($numComp);
-
-        $res = $tecnicoClass->updateTechProfileData();
+        
+        
+        
+        if($_POST["description"]) {
+            $tecnicoClass->setTechDescription($_POST["description"]);
+            
+            $res = $tecnicoClass->updateProTechProfileData();
+        } else {
+            $res = $tecnicoClass->updateTechProfileData();
+        }
     }
 
     if($res) {

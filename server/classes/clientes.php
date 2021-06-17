@@ -99,7 +99,7 @@
 				}
 			}
 			else {
-				return die(header("HTTP/1.0 401 Cliente não econtrado"));
+				return die(header("HTTP/1.0 401 Cliente nao econtrado"));
 			}
 
 		}
@@ -143,7 +143,7 @@
 				}
 			}
 			else{
-				return die(header("HTTP/1.0 422 Cliente já existente com esse email"));
+				return die(header("HTTP/1.0 422 Cliente ja existente com esse email"));
 			}
 		}
 

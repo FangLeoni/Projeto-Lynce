@@ -187,8 +187,8 @@ header div
 
 .parceiro .generalDataCont .imgPerfil img
 {
-    height: 100%;
-    width: 100%;
+    height: 30vh;
+    width: 30vw;
     background-color: #D7FA00;
     border: 2px solid #00DA8B;
     border-radius: 5px;

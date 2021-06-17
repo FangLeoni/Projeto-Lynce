@@ -12,9 +12,10 @@
 		public $state;
 		public $city;
 		public $photo;
-        public $cep;
+    		public $cep;
 		public $address;
 		public $compNumber;
+		public $descript;
 
 		public function __construct() {
 			$connection = new DbConnect();
@@ -52,6 +53,7 @@
 		public function setTechCep ( $cep ) { $this->cep = $cep ; }
 		public function setTechAddress ( $address ) { $this->address = $address ; }
 		public function setTechCompNumber ( $compNumber ) { $this->compNumber = $compNumber ; }
+		public function setTechDescription ( $descript ) { $this->descript = $descript ; }
 
 		public function getTechDataByEmail() {
 			$sql = $this->db->prepare("SELECT * FROM tb_tecnicos WHERE ds_email = :email OR cd_tecnico = :codigo");
@@ -104,7 +106,7 @@
 				}
 			}
 			else {
-				return die(header("HTTP/1.0 401 Técnico não econtrado"));
+				return die(header("HTTP/1.0 401 Tecnico nao econtrado"));
 			}
 		}
 
@@ -153,7 +155,7 @@
 				}
 			}
 			else{
-				return die(header("HTTP/1.0 422 Técnico já existente com esse email"));
+				return die(header("HTTP/1.0 422 Tecnico ja existente com esse email"));
 			}
 		}
 
@@ -190,7 +192,7 @@
 				"email" => $this->email,
 				"imagem" => $this->photo
 			];
-			print_r($data);
+			
 			$status = $sql->execute($data);
 
 			if($status) {	
@@ -231,9 +233,80 @@
 			}
 		}
 
+		public function updateProTechProfileData() {
+			$sql = $this->db->prepare(" UPDATE tb_tecnicos SET 
+															nm_tecnico = :name,
+															ds_email = :email,
+															ds_telefone = :phone,
+															sg_estado = :state,
+															nm_cidade = :city,
+															ds_endereco = :endereco,
+															ds_numero_complementar = :numComp,
+														  ds_descricao_loja = :descript
+															WHERE cd_tecnico = :id "
+			);
+			$data = [	
+				"id" => $this->id,
+				"name" => $this->name,
+				"email" => $this->email,
+				"phone" => $this->phone,
+				"state" => $this->state,
+				"city" => $this->city,
+				"endereco" => $this->address,
+				"numComp" => $this->compNumber,
+				"descript" => $this->descript
+			];
+			
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return $status;
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao atualizar perfil"));
+			}
+		}
+
+		public function togglePremium() {
+			$sql = $this->db->prepare(" UPDATE tb_tecnicos SET 
+															ic_premium = NOT ic_premium
+															WHERE cd_tecnico = :id "
+			);
+			$data = [	
+				"id" => $this->id
+			];
+			
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return header("HTTP/1.0 200 Mundancas feitas com sucesso");
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao executar mudancas"));
+			}
+		}
+
+		public function toggleLicenciado() {
+			$sql = $this->db->prepare(" UPDATE tb_tecnicos SET 
+															ic_licenciado = NOT ic_licenciado
+															WHERE cd_tecnico = :id "
+			);
+			$data = [	
+				"id" => $this->id
+			];
+			
+			$status = $sql->execute($data);
+
+			if($status) {	
+				return header("HTTP/1.0 200 Mundancas feitas com sucesso");
+			} else {
+				return die(header("HTTP/1.0 401 Falha ao executar mudancas"));
+			}
+		}
+
 	}
 
 	// $tecnico = new Technicians();
+	// $tecnicoClass->setTechId("d9dab6f8f258f564dbe76916174de09f40e932430beb0b4c32be6aed0153");
+	// $res = $tecnico->togglePremium();
 	// $res = $tecnico->getMessages(129831);
 
 	// $res = $tecnico->getConv(1275251979);

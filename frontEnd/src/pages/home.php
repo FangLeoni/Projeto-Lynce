@@ -31,14 +31,16 @@
       </a>
     </div>
 
+    <a href="./perfil.php">
     <div class="imgProfile">
       <img src="/server/profilePics/<?php echo $_SESSION['codigo']?>/<?php echo $_SESSION['profPic'] ?>" alt="perfil">
     </div>
+    </a>
     
     <main class="buttonsGrid">
       <a href="./formularioParte1.php" class="linkButtons Item1">
             <img class="lamp-img" src="../../assets/icons/celular-quebrado.png" alt="lamp" />
-          <h2 class="secundario-text">Algum problema ?</h2>
+          <h2 class="secundario-text">Algum problema?</h2>
       </a>
 
       <a href="./mapa.php" class="linkButtons Item2">

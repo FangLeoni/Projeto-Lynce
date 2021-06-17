@@ -135,7 +135,7 @@
 
 		public function getMessages(){
 			$sql = $this->db->prepare("SELECT * FROM (
-                                            SELECT fk_conversa, ds_message, cd_main, dt_creation FROM tb_messages WHERE fk_conversa LIKE ? ORDER BY dt_creation DESC LIMIT 20
+                                            SELECT fk_conversa,md_file, ds_message, cd_main, dt_creation FROM tb_messages WHERE fk_conversa LIKE ? ORDER BY dt_creation DESC LIMIT 20
                                         ) sub
                                         ORDER BY dt_creation ASC");
 
@@ -239,6 +239,46 @@
                 return header("HTTP/1.0 200 Mensagem registrada com sucesso");
             } else {
                 return die(header("HTTP/1.0 422 Falha ao registrar mensagem"));
+            }
+        }
+
+        public function sendFile($file){
+
+            $sql = $this->db->prepare("INSERT INTO `tb_messages` (
+                cd_message,
+                md_file,
+                dt_creation,
+                cd_main,
+                cd_other,
+                fk_conversa
+            ) VALUES (
+                :cd_message,
+                :newFile,
+                NOW(),
+                :codigoMain,
+                :codigoOther,
+                :idConversa	
+            ) ");
+
+
+            $data = [	
+                "cd_message" => $this->chatId,
+                "newFile" => $file,
+                "codigoMain" => $this->main,
+                "codigoOther" => $this->other,
+                "idConversa" => $this->convId
+            ];
+
+            // print_r($data);
+
+            $status = $sql->execute($data);
+// return $status;
+            // echo $status;
+
+            if($status) {
+                return header("HTTP/1.0 200 Arquivo registrada com sucesso");
+            } else {
+                return die(header("HTTP/1.0 422 Falha ao registrar arquivo"));
             }
         }
 

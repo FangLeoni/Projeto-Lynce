@@ -159,9 +159,9 @@
                     if($info["ic_licenciado"] == 1 && $info["ic_premium"] != 1) {
                       ?>
                       <li><?php echo $info["nm_tecnico"] ?>
-                          <p><?php echo $info["ds_email"] ?></p>
+                      <br><?php echo $info["ds_email"] ?>
                           <a href="/frontEnd/src/pages/chat.php">
-                              <img src="/frontEnd/assets/icons/message-circle.png" alt="">
+                            <img src="/frontEnd/assets/icons/message-circle.png" alt="">
                           </a>
                       </li>
                       <?php
